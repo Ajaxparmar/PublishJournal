@@ -1,0 +1,103 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+generator client {
+  provider = "prisma-client-js"
+}
+enum Role {
+  ADMIN
+  USER
+}
+model User {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  username  String   @unique
+  email     String   @unique
+  password  String // Hashed password – never store plain text!
+  role      Role     @default(USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  createdVolumes Volume[] @relation("CreatedVolumes")
+  uploadedPapers Paper[]  @relation("UploadedPapers")
+}
+model Volume {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  name        String // e.g. "Volume 21"
+  description String?
+  years       String
+  issues Issue[] @relation("VolumeIssues")
+  Archive     Boolean @default(false)
+
+  createdById String? @db.ObjectId
+  createdBy   User?   @relation("CreatedVolumes", fields: [createdById], references: [id])
+
+  isVisible Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  papers    Paper[]
+
+  @@map("volumes")
+}
+model Author {
+  id           String @id @default(auto()) @map("_id") @db.ObjectId
+  fullName     String
+  organization String
+  country      String
+  email        String
+
+  paperId String @db.ObjectId
+  paper   Paper  @relation(fields: [paperId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("authors")
+}
+model Paper {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  // Removed single authorFullName, organization, country, email
+  // → now stored in related Author records
+  keywords  String[]
+  Abstract String?
+  pdfUrl    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  volumeId String @db.ObjectId
+  volume   Volume @relation(fields: [volumeId], references: [id], onDelete: Cascade)
+
+  issueId String? @db.ObjectId
+  issue   Issue?  @relation(fields: [issueId], references: [id])
+
+  isVisible Boolean @default(true)
+  uploadedById String? @db.ObjectId
+  uploadedBy   User?   @relation("UploadedPapers", fields: [uploadedById], references: [id])
+
+  authors Author[]
+
+  @@map("papers")
+}
+model Issue {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  volumeId String @db.ObjectId
+  volume   Volume @relation("VolumeIssues", fields: [volumeId], references: [id], onDelete: Cascade)
+
+  issueNumber String // e.g. "1", "2", "Jan-Feb"
+  year        Int? // e.g. 2026
+  period      String? // e.g. "Jan-Jun", "Jul-Dec"
+  description String?
+
+  papers Paper[]
+
+  isVisible Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([volumeId, issueNumber]) // prevent duplicate issues in same volume
+  @@map("issue")
+}
+
+
