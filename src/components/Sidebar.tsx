@@ -3,11 +3,16 @@
 import { useState } from 'react';
 import { Bell, FileText, Lock, Database } from 'lucide-react';
 import Link from 'next/link';
-import Image from 'next/image';
+import { signIn, useSession, signOut } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 
 export default function Sidebar() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const { data: session, status } = useSession();
+  const router = useRouter();
 
   const notifications = [
     { id: 14, text: 'Submission open for Volume 115, Issue 1, 2026' },
@@ -44,54 +49,161 @@ export default function Sidebar() {
     { label: 'For Librarians', href: '/for-librarians' },
   ];
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle login logic
-    console.log('Login attempt:', { username, password });
+    
+    if (!username || !password) {
+      toast.error('Please enter both username and password');
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      const result = await signIn('credentials', {
+        username,
+        password,
+        redirect: false,
+      });
+
+      if (result?.error) {
+        toast.error('Invalid username or password');
+        setIsLoading(false);
+        return;
+      }
+
+      if (result?.ok) {
+        toast.success('Login successful!');
+        
+        // Wait a moment for session to update
+        setTimeout(async () => {
+          // Fetch the session to get user role
+          const response = await fetch('/api/auth/session');
+          const sessionData = await response.json();
+          console.log('Session data after login:', sessionData);
+          
+          if (sessionData?.user?.role === 'ADMIN') {
+            router.push('/admin');
+          } else {
+            router.push('/pages/my-papers');
+          }
+          
+          setUsername('');
+          setPassword('');
+          setIsLoading(false);
+        }, 500);
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      toast.error('An error occurred during login');
+      setIsLoading(false);
+    }
+  };
+
+  const handleLogout = async () => {
+    await signOut({ redirect: false });
+    toast.success('Logged out successfully');
+    router.push('/');
   };
 
   return (
     <aside className="space-y-6">
-      {/* User Login Widget */}
+      {/* User Login/Profile Widget */}
       <div className="bg-white rounded-2xl shadow-lg p-6">
         <div className="flex items-center mb-4">
           <Lock className="w-5 h-5 text-blue-600 mr-2" />
-          <h3 className="text-lg font-bold text-gray-900">User Login</h3>
+          <h3 className="text-lg font-bold text-gray-900">
+            {session ? 'User Profile' : 'User Login'}
+          </h3>
         </div>
-        <form onSubmit={handleLogin} className="space-y-4">
-          <div>
-            <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1">
-              Username
-            </label>
-            <input
-              type="text"
-              id="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
-              placeholder="Enter username"
-            />
+
+        {status === 'loading' ? (
+          <div className="text-center py-8">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
           </div>
-          <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
-              placeholder="Enter password"
-            />
+        ) : session ? (
+          // Logged in state
+          <div className="space-y-4">
+            <div className="bg-blue-50 rounded-lg p-4">
+              <p className="text-sm text-gray-600">Logged in as:</p>
+              <p className="font-semibold text-gray-900">{session.user?.email || session.user?.name}</p>
+              <p className="text-xs text-blue-600 mt-1">
+                Role: {session.user?.role}
+              </p>
+            </div>
+            
+            <div className="space-y-2">
+              {session.user?.role === 'ADMIN' ? (
+                <Link
+                  href="/admin"
+                  className="block w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200 text-center"
+                >
+                  Go to Admin Panel
+                </Link>
+              ) : (
+                <Link
+                  href="/pages/my-papers"
+                  className="block w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200 text-center"
+                >
+                  My Papers
+                </Link>
+              )}
+              
+              <button
+                onClick={handleLogout}
+                className="w-full bg-gray-200 text-gray-700 py-2 rounded-lg font-semibold hover:bg-gray-300 transition-colors duration-200"
+              >
+                Logout
+              </button>
+            </div>
           </div>
-          <button
-            type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200"
-          >
-            Login
-          </button>
-        </form>
+        ) : (
+          // Login form
+          <form onSubmit={handleLogin} className="space-y-4">
+            <div>
+              <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1">
+                Username
+              </label>
+              <input
+                type="text"
+                id="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                disabled={isLoading}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
+                placeholder="Enter username"
+              />
+            </div>
+            <div>
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+                Password
+              </label>
+              <input
+                type="password"
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                disabled={isLoading}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
+                placeholder="Enter password"
+              />
+            </div>
+            <button
+              type="submit"
+              disabled={isLoading}
+              className="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200 disabled:bg-blue-400 disabled:cursor-not-allowed flex items-center justify-center"
+            >
+              {isLoading ? (
+                <>
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                  Logging in...
+                </>
+              ) : (
+                'Login'
+              )}
+            </button>
+          </form>
+        )}
       </div>
 
       {/* Notifications */}

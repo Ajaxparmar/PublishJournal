@@ -19,6 +19,7 @@ model User {
   updatedAt DateTime @updatedAt
   createdVolumes Volume[] @relation("CreatedVolumes")
   uploadedPapers Paper[]  @relation("UploadedPapers")
+  @@map("users")
 }
 model Volume {
   id          String  @id @default(auto()) @map("_id") @db.ObjectId
