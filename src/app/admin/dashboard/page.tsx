@@ -3,7 +3,7 @@ import { AdminLayout } from "@/components/admin/AdminLayout";
 
 export default function DashboardPage() {
   return (
-    <AdminLayout>
+
       <div className="space-y-6">
         <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
 
@@ -16,6 +16,6 @@ export default function DashboardPage() {
           {/* ... more cards */}
         </div>
       </div>
-    </AdminLayout>
+    
   );
 }

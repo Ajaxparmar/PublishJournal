@@ -1,21 +1,45 @@
 import { Database, TrendingUp, Award } from 'lucide-react';
 
 export default function IndexingSection() {
-  const databases = [
-    'Business Source Corporate Plus (EBSCO)',
-    'Business Source Index (EBSCO)',
-    'Business Source International (EBSCO)',
-    'Educational Psychology & Administration Directory (Cabell\'s)',
-    'Management Directory (Cabell\'s)',
-    'Scopus',
-    'Ulrich\'s Periodicals Directory',
-  ];
+const databases = [
+  'Academic Search Alumni Edition (EBSCO Publishing)',
+  'Academic Search Complete (EBSCO Publishing)',
+  'ArticleFirst (OCLC)',
+  'Arts & Humanities Citation Index (Clarivate Analytics)',
+  'Book Review Digest Plus (EBSCO Publishing)',
+  'COMPENDEX (Elsevier)',
+  'Education Collection (ProQuest)',
+  'Education Database (ProQuest)',
+  'Education Full Text (HW Wilson)',
+  'Education Index/Abstracts (EBSCO Publishing)',
+  'Education Research Complete (EBSCO Publishing)',
+  'INSPEC (IET)',
+  'Materials Science & Engineering Database (ProQuest)',
+  'OmniFile Full Text Mega Edition (HW Wilson)',
+  'OmniFile Full Text Select (HW Wilson)',
+  'ProQuest Central (ProQuest)',
+  'ProQuest Central K-318',
+  'ProQuest Professional Education (ProQuest)',
+  'Research Library (ProQuest)',
+  'Research Library Prep (ProQuest)',
+  'Science Citation Index Expanded (Clarivate Analytics)',
+  'Science Full Text Select (HW Wilson)',
+  'SciTech Premium Collection (ProQuest)',
+  'SCOPUS (Elsevier)',
+  'Social Science Premium Collection (ProQuest)',
+  'Social Sciences Citation Index (Clarivate Analytics)',
+  'STEM Database (ProQuest)',
+  'Technology Collection (ProQuest)',
+  'Web of Science (Clarivate Analytics)',
+  "Ulrich's Periodicals Directory",  // From your array – confirmed
+  'Scopus',                          // From your array (duplicate removed, kept for emphasis)
+];
 
   const metrics = [
-    { label: 'H-Index', value: '2', icon: Award },
-    { label: 'SJR Score', value: '0.215', icon: TrendingUp },
-    { label: 'SNIP Score', value: '0.819', icon: TrendingUp },
-    { label: 'Impact Factor', value: '7.89', icon: Award },
+    { label: 'H-Index', value: '112', icon: Award },
+    { label: 'Journal Citation Indicator', value: '1.44', icon: TrendingUp },
+    { label: 'CiteScore', value: '10.1', icon: TrendingUp },
+    { label: 'Impact Factor', value: '3.4', icon: Award },
   ];
 
   return (

@@ -18,15 +18,18 @@ export default function Sidebar() {
     { id: 12, text: 'Submission open for Volume 19 No. 2, 2024' },
   ];
 
-  const indexingServices = [
-    { name: 'Scopus', logo: '/images/scopus.png' },
-    { name: 'EBSCO', logo: '/images/ebsco.png' },
-    { name: 'Cabell\'s', logo: '/images/cabells.png' },
-    { name: 'Ulrich\'s', logo: '/images/ulrichs.png' },
-    { name: 'Index Copernicus', logo: '/images/ic.png' },
-    { name: 'ERIC', logo: '/images/eric.png' },
-    { name: 'ZDB', logo: '/images/zdb.png' },
-  ];
+const indexingServices = [
+  { name: 'Scopus', logo: '/images/scopus.png' },                    // Elsevier's Scopus
+  { name: 'WoS', logo: '/images/wos.png' },                          // Web of Science (Clarivate)
+  { name: 'SCI-E', logo: '/images/scie.png' },                       // Science Citation Index Expanded
+  { name: 'SSCI', logo: '/images/ssci.png' },                        // Social Sciences Citation Index
+  { name: 'AHCI', logo: '/images/ahci.png' },                        // Arts & Humanities Citation Index
+  { name: 'COMPENDEX', logo: '/images/compendex.png' },              // Elsevier's engineering database
+  { name: 'INSPEC', logo: '/images/inspec.png' },                    // IET's physics/engineering index
+  { name: 'EBSCO', logo: '/images/ebsco.png' },                      // Covers multiple EBSCO services (Academic Search, Education Index, etc.)
+  { name: 'ProQuest', logo: '/images/proquest.png' },                // Covers Education Collection, Central, SciTech, STEM, etc.
+  { name: 'HW Wilson', logo: '/images/hwwilson.png' },              // OmniFile, Education Full Text, Science Full Text Select
+];
 
   const quickLinks = [
     { label: 'Editorial Team', href: '/editorial-team' },

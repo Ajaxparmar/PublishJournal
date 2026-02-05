@@ -3,23 +3,113 @@ import Link from 'next/link';
 
 export default function AnnouncementsSection() {
   const scopes = [
-    'Computer and Information Science',
-    'Physics',
-    'Chemistry',
-    'Earth Sciences',
-    'Electrical and Electronic Engineering',
-    'Engineering',
-    'Environmental Sciences',
-    'Materials Science',
-    'Mathematics',
-    'Education',
-    'Literature',
-    'Social Science',
-    'Material Science',
-    'Political Science',
-    'Medical Science',
-    'Law',
-    'Philosophy',
+    // All Engineering Fields (core and specialized branches)
+  'All Engineering Fields',
+  'Civil Engineering',
+  'Mechanical Engineering',
+  'Electrical Engineering',
+  'Electronics Engineering',
+  'Computer Engineering',
+  'Chemical Engineering',
+  'Biomedical Engineering',
+  'Aerospace Engineering',
+  'Environmental Engineering',
+  'Industrial Engineering',
+  'Materials Engineering',
+  'Mining Engineering',
+  'Agricultural Engineering',
+  'Structural Engineering',
+  'Transportation Engineering',
+  'Manufacturing Engineering',
+  'Petroleum Engineering',
+  'Nuclear Engineering',
+  'Systems Engineering',
+  'Mechatronics Engineering',
+  'Robotics Engineering',
+
+  // Computer Science and Information Technology
+  'Computer Science',
+  'Information Technology',
+  'Software Engineering',
+  'Data Structures and Algorithms',
+  'Computer Networks',
+  'Cybersecurity',
+  'Human-Computer Interaction',
+
+  // Artificial Intelligence, Data Science, and Emerging Technologies
+  'Artificial Intelligence',
+  'Machine Learning',
+  'Deep Learning',
+  'Data Science',
+  'Big Data Analytics',
+  'Natural Language Processing',
+  'Computer Vision',
+  'Emerging Technologies',
+  'Internet of Things (IoT)',
+  'Blockchain',
+  'Quantum Computing',
+
+  // Mathematics and Applied Sciences
+  'Mathematics',
+  'Applied Mathematics',
+  'Statistics',
+  'Operations Research',
+  'Computational Mathematics',
+  'Numerical Analysis',
+
+  // Physical Sciences
+  'Physics',
+  'Applied Physics',
+  'Chemistry',
+  'Physical Chemistry',
+  'Materials Science',
+
+  // Biological and Life Sciences
+  'Biology',
+  'Biological Sciences',
+  'Biotechnology',
+  'Bioinformatics',
+  'Life Sciences',
+
+  // Educational Sciences and Learning Sciences (core to engineering education)
+  'Educational Sciences',
+  'Learning Sciences',
+  'Engineering Education',
+  'STEM Education',
+  'Science Education',
+  'Technology Education',
+  'Engineering Epistemologies',
+  'Learning Mechanisms',
+  'Assessment in Engineering',
+  'Curriculum Development in Engineering',
+
+  // Management, Business Studies, and Organizational Studies (in engineering contexts)
+  'Engineering Management',
+  'Project Management',
+  'Organizational Studies in Engineering',
+  'Innovation Management',
+  'Engineering Leadership',
+
+  // Humanities, Social Sciences, and Policy Studies (applied to engineering contexts)
+  'Social Sciences in Engineering',
+  'Engineering Policy',
+  'Science and Technology Studies',
+  'Engineering Ethics',
+
+  // Psychology and Cognitive Sciences
+  'Psychology',
+  'Cognitive Sciences',
+  'Educational Psychology',
+  'Cognitive Processes in Learning Engineering',
+
+  // Sustainability, Ethics, and Professional Responsibility
+  'Sustainability',
+  'Sustainable Engineering',
+  'Environmental Ethics',
+  'Engineering Ethics',
+  'Professional Responsibility',
+  'Diversity, Equity, and Inclusion in Engineering',
+  'Professional Formation of Engineers',
   ];
 
   const requirements = [
@@ -36,12 +126,12 @@ export default function AnnouncementsSection() {
     {
       icon: CheckCircle,
       title: 'Recent References',
-      description: 'Study based on references from 2017-2023',
+      description: 'Study based on references from 1990-2025',
     },
     {
       icon: DollarSign,
       title: 'Article Processing Charge',
-      description: 'USD 400.00 / EUR 350 (after acceptance)',
+      description: 'USD 2000.00 / EUR 1,696',
     },
   ];
 
@@ -57,7 +147,7 @@ export default function AnnouncementsSection() {
       {/* Main Announcement */}
       <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl p-6 text-white mb-8 shadow-lg">
         <h3 className="text-2xl font-bold mb-3">
-          Submission open for Volume 19 No. 1, 2024
+          Submission open for Volume 115 No. 1, 2026
         </h3>
         <p className="text-blue-100 mb-4">
           We invite you to submit your paper to our journal. Please submit your manuscript through 

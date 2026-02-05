@@ -9,7 +9,7 @@ export default function Hero() {
           <div className="text-center px-4">
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 drop-shadow-lg">
               International Journal of<br />
-              Interdisciplinary Organizational Studies
+              Engineering Education
             </h2>
             <p className="text-lg md:text-xl text-blue-50 max-w-3xl mx-auto">
               Exploring new possibilities in knowledge, culture and change management

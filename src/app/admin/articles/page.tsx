@@ -305,7 +305,7 @@ export default function PapersAdminPage() {
   };
 
   return (
-      <div className="space-y-6 p-6">
+      <div className="space-y-6 p-6 w-full">
         <div className="flex items-center justify-between">
           <h2 className="text-3xl font-bold tracking-tight">Papers Management</h2>
           <Button onClick={() => setAddOpen(true)}>

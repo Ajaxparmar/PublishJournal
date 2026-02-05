@@ -25,102 +25,55 @@ export default function AboutSection() {
   ];
 
   return (
-    <section className="bg-white rounded-2xl shadow-lg p-8 md:p-12">
-      <h2 className="text-3xl font-bold text-gray-900 mb-6 border-b-4 border-blue-600 pb-3 inline-block">
-        About the Journal
-      </h2>
-      
-      <div className="prose prose-lg max-w-none text-gray-700 space-y-4 mb-8">
-        <p>
-          The Organization Studies Journal Collection comes together around a common concern for, 
-          and a shared interest to explore, new possibilities in knowledge, culture and change 
-          management, within the broader context of the nature and future of organizations and 
-          their impact on society.
-        </p>
-        
-        <p>
-          <strong>International Journal of Interdisciplinary Organizational Studies</strong> explores 
-          the social dynamics of public, community, and privately owned organizations.
-        </p>
-        
-        <p>
-          The Journal publishes only original articles in different languages which have international 
-          importance. In addition to full-length research articles, the Journal also publishes review 
-          articles. Papers can be focused on fundamental research leading to new methods, or adaptation 
-          of existing methods for new applications.
-        </p>
-        
-        <p>
-          Articles for the Journal are peer-reviewed by third-party reviewers who are selected from 
-          among specialists in the subject matter of peer-reviewed materials.
-        </p>
-      </div>
+<section className="bg-white rounded-2xl shadow-lg p-8 md:p-12">
+  <h2 className="text-3xl font-bold text-gray-900 mb-6 border-b-4 border-blue-600 pb-3 inline-block">
+    About the Journal
+  </h2>
+  
+  <div className="prose prose-lg max-w-none text-gray-700 space-y-6 text-justify">
+    <p>
+      The Journal of Engineering Education (JEE) is a leading international, peer-reviewed scholarly journal dedicated to the advancement of engineering education research, theory, and practice. Published quarterly by Wiley on behalf of the American Society for Engineering Education (ASEE), the journal serves as a premier platform for disseminating high-impact, evidence-based research that informs how engineering is taught, learned, assessed, and governed across diverse educational and professional settings.
+    </p>
+    
+    <p>
+      JEE is committed to publishing research that moves beyond descriptive accounts of educational practice to offer deep theoretical insight, methodological rigor, and clear implications for engineering education systems worldwide. The journal emphasizes scholarship that contributes to a cumulative and coherent body of knowledge, strengthening the intellectual foundations of engineering education as a distinct and mature field of inquiry.
+    </p>
+    
+    <p>
+      The journal welcomes original research articles that investigate learning processes, instructional strategies, curriculum design, assessment and evaluation, institutional structures, and socio-cultural dimensions of engineering education. Contributions may draw upon learning sciences, educational psychology, cognitive science, sociology, organizational studies, policy analysis, and engineering practice, provided that the research is clearly grounded within an engineering education framework.
+    </p>
+    
+    <p>
+      A defining feature of JEE is its strong emphasis on methodological quality and scholarly rigor. Published studies are expected to demonstrate robust research design, transparent analytical procedures, and verifiable and replicable evidence. Both empirical and theoretical contributions should articulate clear research questions, situate findings within existing literature, and advance understanding in ways that are meaningful for researchers, educators, and decision-makers.
+    </p>
+    
+    <p>
+      JEE also plays a critical role in addressing contemporary challenges in engineering education, including equity, diversity, inclusion, ethics, sustainability, and the professional formation of engineers. The journal actively encourages research that examines how educational structures and pedagogical practices shape access, participation, identity, and success in engineering pathways.
+    </p>
+    
+    <p>
+      By fostering dialogue between research, educational practice, and policy, the Journal of Engineering Education supports informed decision-making at institutional, national, and international levels. Its readership includes academic researchers, engineering educators, curriculum developers, accreditation and quality-assurance bodies, policymakers, and industry stakeholders concerned with the preparation of future engineers.
+    </p>
+    
+    <p>
+      Through its commitment to scholarly excellence, intellectual integrity, and global relevance, JEE continues to shape the direction of engineering education research and to influence how engineering education evolves in response to societal, technological, and economic change.
+    </p>
+  </div>
 
-      {/* Highlights Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        {highlights.map((item) => (
-          <div 
-            key={item.title}
-            className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 text-center hover:shadow-md transition-shadow duration-300"
-          >
-            <item.icon className="w-10 h-10 text-blue-600 mx-auto mb-3" />
-            <h3 className="font-bold text-gray-900 mb-2">{item.title}</h3>
-            <p className="text-sm text-gray-600">{item.description}</p>
-          </div>
-        ))}
-      </div>
-
-      {/* Publication Details */}
-      <div className="bg-gray-50 rounded-xl p-6 space-y-3">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <span className="font-semibold text-gray-900">Collection Founded:</span>
-            <span className="ml-2 text-gray-700">2006</span>
-          </div>
-          <div>
-            <span className="font-semibold text-gray-900">Serial Founded:</span>
-            <span className="ml-2 text-gray-700">2013 (Volume 8)</span>
-          </div>
-          <div>
-            <span className="font-semibold text-gray-900">ISSN Print:</span>
-            <span className="ml-2 text-gray-700 font-mono">2324-7649</span>
-          </div>
-          <div>
-            <span className="font-semibold text-gray-900">ISSN Online:</span>
-            <span className="ml-2 text-gray-700 font-mono">2324-7657</span>
-          </div>
-          <div>
-            <span className="font-semibold text-gray-900">Publication Frequency:</span>
-            <span className="ml-2 text-gray-700">Monthly</span>
-          </div>
-          <div>
-            <span className="font-semibold text-gray-900">DOI:</span>
-            <span className="ml-2 text-blue-600 text-sm break-all">
-              http://doi.org/10.18848/2324-7649/CGP
-            </span>
-          </div>
-        </div>
-      </div>
-
-      {/* Contact Information */}
-      <div className="mt-8 bg-blue-50 rounded-xl p-6">
-        <h3 className="font-bold text-gray-900 mb-4 text-lg">For Further Information:</h3>
-        <div className="space-y-2 text-gray-700">
-          <p className="font-semibold">Prof. Tracey L. Brown</p>
-          <p>540 Upland Avenue</p>
-          <p>Reading, PA 19611</p>
-          <p>Phone: 610-796-8270</p>
-          <p>
-            E-mail:{' '}
-            <a 
-              href="mailto:office@cg-scholar-organizationalstudies.org"
-              className="text-blue-600 hover:text-blue-800 underline"
-            >
-              office@cg-scholar-organizationalstudies.org
-            </a>
-          </p>
-        </div>
-      </div>
-    </section>
+  {/* Optional call-to-action block */}
+  <div className="mt-10 bg-blue-50 rounded-xl p-6 text-center">
+    <p className="text-gray-700 mb-4">
+      Visit the official journal site for submissions, archives, and more.
+    </p>
+    <a
+      href="https://onlinelibrarywileys.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-block bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors"
+    >
+      Access Journal of Engineering Education on Wiley
+    </a>
+  </div>
+</section>
   );
 }

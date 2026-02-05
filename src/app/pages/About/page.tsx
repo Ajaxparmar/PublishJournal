@@ -14,29 +14,29 @@ export default function AboutPage() {
     {
       icon: Target,
       title: 'Our Mission',
-      description: 'To build an epistemic community that makes linkages across disciplinary, geographic, and cultural boundaries in the study of organizations.',
+      description: 'The Journal of Engineering Education serves to cultivate, disseminate, and archive scholarly research in engineering education.',
     },
     {
       icon: Eye,
       title: 'Our Vision',
-      description: 'To be the leading journal exploring new possibilities in knowledge, culture and change management within organizations.',
+      description: 'The Journal of Engineering Education seeks to help define and shape a body of knowledge derived from scholarly research that leads to timely and significant improvements in engineering education worldwide.',
     },
     {
       icon: Globe,
-      title: 'Our Reach',
-      description: 'Connecting scholars worldwide to discuss important issues related to organizational dynamics and scientific activities.',
+      title: 'Role',
+      description: 'The Journal of Engineering Education is more than a place to publish papers—it is a vital partner in the global community of stakeholders dedicated to advancing research in engineering education from pre-college to post-graduate professional education.',
     },
     {
       icon: Award,
-      title: 'Our Standards',
-      description: 'Publishing only original, peer-reviewed articles that have international importance and scientific merit.',
+      title: 'Research Areas',
+      description: `The Journal publishes manuscripts in a wide variety of research areas in the field of engineering education. A description of current research areas in engineering education may be found in the special report, “The Research Agenda for the New Discipline of Engineering Education,” Journal of Engineering Education, vol. 95, no. 4 (October 2006), pp. 259–261. This report identifies five broad research areas: (1) engineering epistemologies (what constitutes engineering thinking and knowledge), (2) engineering learning mechanisms (how learners develop knowledge and competencies), (3) engineering learning systems (instructional cultures and institutional practices), (4) engineering diversity and inclusiveness (how human diversity contributes to engineering processes and products), and (5) engineering assessment (development and use of assessment methods, instruments, and metrics).`,
     },
   ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100">
       <Header />
-      
+
       <main className="container mx-auto px-4 py-12">
         {/* Page Header */}
         <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12 mb-8">
@@ -57,47 +57,34 @@ export default function AboutPage() {
               <h2 className="text-3xl font-bold text-gray-900 mb-6 border-b-4 border-blue-600 pb-3 inline-block">
                 Overview
               </h2>
-              <div className="prose prose-lg max-w-none text-gray-700 space-y-4">
+
+              <div className="prose prose-lg max-w-none text-gray-700 space-y-6 text-justify">
                 <p>
-                  The <strong>International Journal of Interdisciplinary Organizational Studies</strong> explores 
-                  the social dynamics of public, community, and privately owned organizations. We come together 
-                  around a common concern for, and a shared interest to explore, new possibilities in knowledge, 
-                  culture and change management, within the broader context of the nature and future of organizations 
-                  and their impact on society.
-                </p>
-                
-                <p>
-                  The journal stemmed from the themed journal collection of Common Grounds Interdisciplinary 
-                  Social Sciences Research Network. The Interdisciplinary Social Sciences Journal Collection was 
-                  founded in 2006. In 2021, the International Journal of Interdisciplinary Organizational Studies 
-                  was moved from the interdisciplinary network to become the premiere journal for the Organization 
-                  Studies Research Network.
-                </p>
-                
-                <p>
-                  The Journal is meant to serve as a means of communication and discussion of important issues 
-                  related to scientific activities. We seek to build an epistemic community to make linkages 
-                  across disciplinary, geographic, and cultural boundaries.
+                  The <strong>Journal of Engineering Education (JEE)</strong> is a leading international, peer-reviewed scholarly journal dedicated to the advancement of engineering education research, theory, and practice. Published quarterly by Wiley on behalf of the American Society for Engineering Education (ASEE), the journal serves as a premier platform for disseminating high-impact, evidence-based research that informs how engineering is taught, learned, assessed, and governed across diverse educational and professional settings.
                 </p>
 
                 <p>
-                  The Journal publishes only original articles in different languages which have international 
-                  importance. In addition to full-length research articles, the Journal also publishes review 
-                  articles. Papers can be focused on fundamental research leading to new methods, or adaptation 
-                  of existing methods for new applications.
+                  JEE is committed to publishing research that moves beyond descriptive accounts of educational practice to offer deep theoretical insight, methodological rigor, and clear implications for engineering education systems worldwide. The journal emphasizes scholarship that contributes to a cumulative and coherent body of knowledge, strengthening the intellectual foundations of engineering education as a distinct and mature field of inquiry.
                 </p>
 
                 <p>
-                  Articles for the Journal are peer-reviewed by third-party reviewers who are selected from 
-                  among specialists in the subject matter of peer-reviewed materials. The Journal is a kind of 
-                  forum for discussing issues and problems facing science and scholars, as well as an effective 
-                  means of interaction between the members of the academic community.
+                  The journal welcomes original research articles that investigate learning processes, instructional strategies, curriculum design, assessment and evaluation, institutional structures, and socio-cultural dimensions of engineering education. Contributions may draw upon learning sciences, educational psychology, cognitive science, sociology, organizational studies, policy analysis, and engineering practice, provided that the research is clearly grounded within an engineering education framework.
                 </p>
 
                 <p>
-                  The Journal is read by a large number of scholars, and the circulation of the journal is 
-                  constantly growing. Articles containing fundamental or applied scientific results in all areas 
-                  of research are accepted for consideration.
+                  A defining feature of JEE is its strong emphasis on methodological quality and scholarly rigor. Published studies are expected to demonstrate robust research design, transparent analytical procedures, and verifiable and replicable evidence. Both empirical and theoretical contributions should articulate clear research questions, situate findings within existing literature, and advance understanding in ways that are meaningful for researchers, educators, and decision-makers.
+                </p>
+
+                <p>
+                  JEE also plays a critical role in addressing contemporary challenges in engineering education, including equity, diversity, inclusion, ethics, sustainability, and the professional formation of engineers. The journal actively encourages research that examines how educational structures and pedagogical practices shape access, participation, identity, and success in engineering pathways.
+                </p>
+
+                <p>
+                  By fostering dialogue between research, educational practice, and policy, the Journal of Engineering Education supports informed decision-making at institutional, national, and international levels. Its readership includes academic researchers, engineering educators, curriculum developers, accreditation and quality-assurance bodies, policymakers, and industry stakeholders concerned with the preparation of future engineers.
+                </p>
+
+                <p>
+                  Through its commitment to scholarly excellence, intellectual integrity, and global relevance, JEE continues to shape the direction of engineering education research and to influence how engineering education evolves in response to societal, technological, and economic change.
                 </p>
               </div>
             </section>
@@ -109,40 +96,13 @@ export default function AboutPage() {
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {values.map((value) => (
-                  <div 
+                  <div
                     key={value.title}
                     className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 hover:shadow-md transition-shadow duration-300"
                   >
                     <value.icon className="w-10 h-10 text-blue-600 mb-4" />
                     <h3 className="text-xl font-bold text-gray-900 mb-3">{value.title}</h3>
                     <p className="text-gray-700">{value.description}</p>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            {/* History Timeline */}
-            <section className="bg-white rounded-2xl shadow-lg p-8 md:p-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6 border-b-4 border-blue-600 pb-3 inline-block">
-                Our History
-              </h2>
-              <div className="space-y-6">
-                {milestones.map((milestone, index) => (
-                  <div 
-                    key={milestone.year}
-                    className="flex items-start space-x-4"
-                  >
-                    <div className="bg-blue-600 text-white rounded-full w-16 h-16 flex items-center justify-center flex-shrink-0 font-bold">
-                      {milestone.year}
-                    </div>
-                    <div className="flex-1 pt-3">
-                      <div className="bg-blue-50 rounded-lg p-4">
-                        <p className="text-gray-900 font-semibold">{milestone.event}</p>
-                      </div>
-                      {index < milestones.length - 1 && (
-                        <div className="w-1 h-8 bg-blue-200 ml-7 mt-2"></div>
-                      )}
-                    </div>
                   </div>
                 ))}
               </div>
@@ -162,13 +122,11 @@ export default function AboutPage() {
                   The Editorial Board composes of 25 distinguished members from around the world.
                 </p>
                 <p className="text-lg font-semibold">
-                  Chaired by: <span className="text-blue-100">Academician Dr. Spencer S Stober</span>
+                  Chaired by: <span className="text-blue-100">David Knight</span>
                 </p>
               </div>
               <p className="text-gray-700">
-                Our editorial board consists of internationally recognized experts in organizational studies, 
-                management, social sciences, and related fields. Board members are selected for their expertise, 
-                research contributions, and commitment to advancing interdisciplinary scholarship.
+                The roles of the Editorial Board for the <strong>Journal of Engineering Education (JEE)</strong> are to provide expert input on manuscripts submitted to JEE and to help shape journal policy and scope. New Editorial Board members are appointed by the JEE Editor with input from other Editorial Board members. The position of Editor is typically a five-year term. Terms for Associate Editors, Senior Associate Editors, and Deputy Editors are three years in duration, and for Assistant Editors they are typically one year in duration. All these positions are renewable for one additional term, and individuals can advance from Assistant Editor to Associate Editor, and from Associate Editor to Senior Associate Editor and/or Deputy Editor. If you are interested in joining the JEE Editorial Board, please contact a current member of the Editorial Board listed below.
               </p>
             </section>
           </div>
@@ -214,7 +172,7 @@ export default function AboutPage() {
                 <p className="text-blue-100">540 Upland Avenue</p>
                 <p className="text-blue-100">Reading, PA 19611</p>
                 <p className="text-blue-100">Phone: 610-796-8270</p>
-                <a 
+                <a
                   href="mailto:office@cg-scholar-organizationalstudies.org"
                   className="inline-block bg-white text-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-blue-50 transition-colors duration-200 mt-2"
                 >
@@ -244,7 +202,7 @@ export default function AboutPage() {
           </div>
         </div>
       </main>
-      
+
       <Footer />
     </div>
   );

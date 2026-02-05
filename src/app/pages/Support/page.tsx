@@ -47,7 +47,7 @@ export default function SupportPage() {
         },
         {
           q: 'What are the publication charges?',
-          a: 'The Article Processing Charge (APC) is USD 400 or EUR 350, payable only after your manuscript has been peer-reviewed and accepted for publication.',
+          a: 'The Article Processing Charge (APC) is USD 3710 or EUR 3090, payable only after your manuscript has been peer-reviewed and accepted for publication.',
         },
         {
           q: 'Can I track my submission status?',
@@ -60,7 +60,7 @@ export default function SupportPage() {
       questions: [
         {
           q: 'Are all articles open access?',
-          a: 'Yes, all articles published in IJOS are immediately available as open access under the CC BY 4.0 Creative Commons license. No subscription or registration is required to read or download articles.',
+          a: 'Yes, all articles published in JEE are immediately available as open access under the CC BY 4.0 Creative Commons license. No subscription or registration is required to read or download articles.',
         },
         {
           q: 'How can I cite articles from your journal?',
@@ -94,7 +94,7 @@ export default function SupportPage() {
         },
         {
           q: 'Can I submit my manuscript to multiple journals?',
-          a: 'No, simultaneous submission to multiple journals is not permitted. Your manuscript must not be under consideration elsewhere when submitted to IJOS.',
+          a: 'No, simultaneous submission to multiple journals is not permitted. Your manuscript must not be under consideration elsewhere when submitted to JEE.',
         },
         {
           q: 'What are your data sharing policies?',
@@ -108,21 +108,21 @@ export default function SupportPage() {
     {
       icon: Mail,
       title: 'Email',
-      detail: 'office@cg-scholar-organizationalstudies.org',
+      detail: 'editor@onlinelibrarywileys.com',
       description: 'Best for general inquiries and submissions',
-      action: 'mailto:office@cg-scholar-organizationalstudies.org',
+      action: 'mailto:editor@onlinelibrarywileys.com',
     },
     {
       icon: Phone,
       title: 'Phone',
       detail: '610-796-8270',
       description: 'Monday - Friday, 9 AM - 5 PM EST',
-      action: 'tel:610-796-8270',
+      action: 'tel:+1 781 388 8590',
     },
     {
       icon: MapPin,
       title: 'Mail',
-      detail: '540 Upland Avenue, Reading, PA 19611',
+      detail: '101 Station Landing,Suite 300. Medford, MA 02155, USA',
       description: 'For postal correspondence',
       action: null,
     },
@@ -176,7 +176,7 @@ export default function SupportPage() {
 
               <div className="bg-blue-50 rounded-xl p-6">
                 <p className="text-gray-700">
-                  <strong>Prof. Tracey L. Brown</strong> - Editor-in-Chief
+               <strong>Editor-in-Chief</strong><br/>   <strong>David Knight</strong> 
                 </p>
                 <p className="text-gray-600 text-sm mt-2">
                   For editorial matters, submission inquiries, and journal-related questions
@@ -337,40 +337,6 @@ export default function SupportPage() {
               </div>
             </div>
 
-            {/* Response Time */}
-            <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl shadow-lg p-6 text-white">
-              <h3 className="text-xl font-bold mb-4">Response Time</h3>
-              <div className="space-y-3 text-sm text-blue-100">
-                <p>
-                  <strong className="text-white">Email:</strong> 1-2 business days
-                </p>
-                <p>
-                  <strong className="text-white">Phone:</strong> Same day during business hours
-                </p>
-                <p>
-                  <strong className="text-white">Mail:</strong> 5-7 business days
-                </p>
-              </div>
-            </div>
-
-            {/* Office Hours */}
-            <div className="bg-white rounded-2xl shadow-lg p-6">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Office Hours</h3>
-              <div className="space-y-2 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Monday - Friday:</span>
-                  <span className="font-semibold text-gray-900">9 AM - 5 PM EST</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Saturday - Sunday:</span>
-                  <span className="font-semibold text-gray-900">Closed</span>
-                </div>
-                <p className="text-gray-500 text-xs mt-4 pt-4 border-t border-gray-200">
-                  Email inquiries received outside office hours will be responded to on the next business day.
-                </p>
-              </div>
-            </div>
-
             {/* Resources */}
             <div className="bg-white rounded-2xl shadow-lg p-6">
               <h3 className="text-xl font-bold text-gray-900 mb-4">Resources</h3>
@@ -387,19 +353,7 @@ export default function SupportPage() {
               </div>
             </div>
 
-            {/* Emergency Contact */}
-            <div className="bg-red-50 border-l-4 border-red-600 rounded-r-2xl shadow-lg p-6">
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Urgent Issues</h3>
-              <p className="text-gray-700 text-sm mb-3">
-                For urgent editorial or technical issues, please call our office directly during business hours.
-              </p>
-              <a 
-                href="tel:610-796-8270"
-                className="inline-block bg-red-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-700 transition-colors"
-              >
-                Call Now: 610-796-8270
-              </a>
-            </div>
+
           </div>
         </div>
       </main>

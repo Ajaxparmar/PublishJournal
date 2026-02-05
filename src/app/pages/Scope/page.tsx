@@ -5,64 +5,116 @@ import { Target, BookOpen, Users, Lightbulb, TrendingUp, Globe } from 'lucide-re
 export default function ScopePage() {
   const researchAreas = [
     {
-      category: 'Organizational Behavior',
+      category: '',
       topics: [
-        'Leadership and management',
-        'Employee motivation and engagement',
-        'Organizational culture and climate',
-        'Team dynamics and collaboration',
-        'Organizational change and development',
-      ],
-    },
-    {
-      category: 'Strategic Management',
-      topics: [
-        'Strategic planning and implementation',
-        'Competitive advantage',
-        'Innovation management',
-        'Corporate governance',
-        'Organizational performance',
-      ],
-    },
-    {
-      category: 'Human Resource Management',
-      topics: [
-        'Talent management and recruitment',
-        'Training and development',
-        'Performance management',
-        'Employee relations',
-        'Diversity and inclusion',
-      ],
-    },
-    {
-      category: 'Organizational Theory',
-      topics: [
-        'Organizational structure and design',
-        'Institutional theory',
-        'Organizational learning',
-        'Knowledge management',
-        'Systems theory',
-      ],
-    },
-    {
-      category: 'Social Sciences',
-      topics: [
-        'Organizational sociology',
-        'Psychology of organizations',
-        'Political science perspectives',
-        'Economic approaches',
-        'Anthropological studies',
-      ],
-    },
-    {
-      category: 'Technology & Innovation',
-      topics: [
-        'Digital transformation',
-        'Information systems',
-        'Technology adoption',
-        'Innovation processes',
-        'Organizational technology',
-      ],
+        // Engineering Fields
+        'All Engineering Fields',
+        'Civil Engineering',
+        'Mechanical Engineering',
+        'Electrical Engineering',
+        'Electronics Engineering',
+        'Computer Engineering',
+        'Chemical Engineering',
+        'Biomedical Engineering',
+        'Aerospace Engineering',
+        'Environmental Engineering',
+        'Industrial Engineering',
+        'Materials Engineering',
+        'Mining Engineering',
+        'Agricultural Engineering',
+        'Structural Engineering',
+        'Transportation Engineering',
+        'Manufacturing Engineering',
+        'Petroleum Engineering',
+        'Nuclear Engineering',
+        'Systems Engineering',
+        'Mechatronics Engineering',
+        'Robotics Engineering',
+
+        // Computer Science & IT
+        'Computer Science',
+        'Information Technology',
+        'Software Engineering',
+        'Data Structures and Algorithms',
+        'Computer Networks',
+        'Cybersecurity',
+        'Human-Computer Interaction',
+
+        // AI, Data Science & Emerging Tech
+        'Artificial Intelligence',
+        'Machine Learning',
+        'Deep Learning',
+        'Data Science',
+        'Big Data Analytics',
+        'Natural Language Processing',
+        'Computer Vision',
+        'Emerging Technologies',
+        'Internet of Things (IoT)',
+        'Blockchain',
+        'Quantum Computing',
+
+        // Mathematics & Applied Sciences
+        'Mathematics',
+        'Applied Mathematics',
+        'Statistics',
+        'Operations Research',
+        'Computational Mathematics',
+        'Numerical Analysis',
+
+        // Physical Sciences
+        'Physics',
+        'Applied Physics',
+        'Chemistry',
+        'Physical Chemistry',
+        'Materials Science',
+
+        // Biological & Life Sciences
+        'Biology',
+        'Biological Sciences',
+        'Biotechnology',
+        'Bioinformatics',
+        'Life Sciences',
+
+        // Educational & Learning Sciences
+        'Educational Sciences',
+        'Learning Sciences',
+        'Engineering Education',
+        'STEM Education',
+        'Science Education',
+        'Technology Education',
+        'Engineering Epistemologies',
+        'Learning Mechanisms',
+        'Assessment in Engineering',
+        'Curriculum Development in Engineering',
+
+        // Management & Organizational Aspects
+        'Engineering Management',
+        'Project Management',
+        'Organizational Studies in Engineering',
+        'Innovation Management',
+        'Engineering Leadership',
+
+        // Social Sciences, Policy & Ethics
+        'Social Sciences in Engineering',
+        'Engineering Policy',
+        'Science and Technology Studies',
+        'Engineering Ethics',
+
+        // Psychology & Cognitive Sciences
+        'Psychology',
+        'Cognitive Sciences',
+        'Educational Psychology',
+        'Cognitive Processes in Learning Engineering',
+
+        // Sustainability, Ethics & Professional Development
+        'Sustainability',
+        'Sustainable Engineering',
+        'Environmental Ethics',
+        'Engineering Ethics',
+        'Professional Responsibility',
+        'Diversity, Equity, and Inclusion in Engineering',
+        'Professional Formation of Engineers',
+      ]
     },
   ];
 
@@ -102,7 +154,7 @@ export default function ScopePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100">
       <Header />
-      
+
       <main className="container mx-auto px-4 py-12">
         {/* Page Header */}
         <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12 mb-8">
@@ -111,7 +163,7 @@ export default function ScopePage() {
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900">Focus & Scope</h1>
           </div>
           <p className="text-xl text-gray-600 leading-relaxed">
-            Our journal covers interdisciplinary research in organizational studies, exploring the social dynamics 
+            Our journal covers interdisciplinary research in organizational studies, exploring the social dynamics
             of public, community, and privately owned organizations.
           </p>
         </div>
@@ -123,24 +175,17 @@ export default function ScopePage() {
               <h2 className="text-3xl font-bold text-gray-900 mb-6 border-b-4 border-blue-600 pb-3 inline-block">
                 Journal Focus
               </h2>
-              <div className="prose prose-lg max-w-none text-gray-700 space-y-4">
+              <div className="prose prose-lg max-w-none text-gray-700 space-y-6 text-justify">
                 <p>
-                  The <strong>International Journal of Interdisciplinary Organizational Studies</strong> provides 
-                  a forum for research that explores new possibilities in knowledge, culture, and change management 
-                  within the broader context of the nature and future of organizations and their impact on society.
-                </p>
-                
-                <p>
-                  We seek to build an epistemic community that makes linkages across disciplinary, geographic, and 
-                  cultural boundaries. The journal is defined by our commitment to interdisciplinary dialogue and 
-                  motivated to build strategies for action framed by shared themes and tensions in organizational 
-                  studies.
+                  The <strong>Journal of Engineering Education</strong> provides a forum for scholarly research that advances engineering education theory, practice, and policy across diverse educational levels—from pre-college through post-graduate and professional development. We cultivate, disseminate, and archive rigorous, evidence-based investigations that contribute to a coherent and cumulative body of knowledge, ultimately driving meaningful improvements in how engineering is taught, learned, assessed, and experienced worldwide.
                 </p>
 
                 <p>
-                  Our scope encompasses theoretical, empirical, and applied research that contributes to understanding 
-                  organizations from multiple perspectives. We welcome both qualitative and quantitative approaches, 
-                  as well as mixed-methods research.
+                  We seek to build a global epistemic community that bridges disciplinary, institutional, geographic, and cultural boundaries. The journal is defined by our commitment to methodological rigor, intellectual integrity, and high-impact scholarship, and is motivated to foster interdisciplinary dialogue and strategies for action framed by shared themes and tensions in engineering education research.
+                </p>
+
+                <p>
+                  Our scope encompasses theoretical, empirical, and applied research that contributes to understanding engineering education from multiple perspectives. We welcome qualitative, quantitative, and mixed-methods approaches, as well as replication studies, meta-analyses, and critical reviews that synthesize prior work to offer new conceptual frameworks, empirical insights, or directions for future inquiry.
                 </p>
               </div>
             </section>
@@ -152,7 +197,7 @@ export default function ScopePage() {
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {approaches.map((approach) => (
-                  <div 
+                  <div
                     key={approach.title}
                     className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 hover:shadow-md transition-shadow duration-300"
                   >
@@ -167,7 +212,7 @@ export default function ScopePage() {
             {/* Research Areas */}
             <section className="bg-white rounded-2xl shadow-lg p-8 md:p-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-6 border-b-4 border-blue-600 pb-3 inline-block">
-                Research Areas
+                Scope
               </h2>
               <div className="space-y-6">
                 {researchAreas.map((area) => (
@@ -186,45 +231,6 @@ export default function ScopePage() {
               </div>
             </section>
 
-            {/* Disciplinary Scope */}
-            <section className="bg-white rounded-2xl shadow-lg p-8 md:p-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6 border-b-4 border-blue-600 pb-3 inline-block">
-                Interdisciplinary Scope
-              </h2>
-              <div className="prose prose-lg max-w-none text-gray-700 space-y-4">
-                <p>
-                  We accept submissions from a wide range of disciplines that contribute to understanding organizations:
-                </p>
-              </div>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mt-6">
-                {[
-                  'Computer Science',
-                  'Physics',
-                  'Chemistry',
-                  'Earth Sciences',
-                  'Engineering',
-                  'Mathematics',
-                  'Education',
-                  'Literature',
-                  'Social Science',
-                  'Political Science',
-                  'Medical Science',
-                  'Law',
-                  'Philosophy',
-                  'Economics',
-                  'Psychology',
-                  'Sociology',
-                ].map((discipline) => (
-                  <div 
-                    key={discipline}
-                    className="bg-blue-50 rounded-lg px-4 py-3 text-sm text-gray-700 hover:bg-blue-100 transition-colors text-center"
-                  >
-                    {discipline}
-                  </div>
-                ))}
-              </div>
-            </section>
-
             {/* Article Types */}
             <section className="bg-white rounded-2xl shadow-lg p-8 md:p-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-6 border-b-4 border-blue-600 pb-3 inline-block">
@@ -232,7 +238,7 @@ export default function ScopePage() {
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {articleTypes.map((type) => (
-                  <div 
+                  <div
                     key={type}
                     className="flex items-center space-x-3 bg-gray-50 rounded-xl p-4 hover:bg-blue-50 transition-colors"
                   >
@@ -246,36 +252,6 @@ export default function ScopePage() {
 
           {/* Sidebar */}
           <div className="lg:col-span-1 space-y-6">
-            {/* Key Themes */}
-            <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl shadow-lg p-6 text-white">
-              <h3 className="text-xl font-bold mb-4">Key Themes</h3>
-              <ul className="space-y-3 text-sm">
-                <li className="flex items-start">
-                  <span className="text-blue-200 mr-2">▸</span>
-                  <span>Knowledge Management</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-blue-200 mr-2">▸</span>
-                  <span>Organizational Culture</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-blue-200 mr-2">▸</span>
-                  <span>Change Management</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-blue-200 mr-2">▸</span>
-                  <span>Leadership</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-blue-200 mr-2">▸</span>
-                  <span>Innovation</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-blue-200 mr-2">▸</span>
-                  <span>Social Impact</span>
-                </li>
-              </ul>
-            </div>
 
             {/* Submission Info */}
             <div className="bg-white rounded-2xl shadow-lg p-6">
@@ -284,13 +260,13 @@ export default function ScopePage() {
                 Interested in submitting to our journal?
               </p>
               <div className="space-y-2">
-                <a 
+                <a
                   href="/submit"
                   className="block bg-blue-600 text-white text-center px-4 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
                 >
                   Submit Paper
                 </a>
-                <a 
+                <a
                   href="/author-guidelines"
                   className="block bg-gray-200 text-gray-700 text-center px-4 py-3 rounded-lg font-semibold hover:bg-gray-300 transition-colors"
                 >
@@ -340,7 +316,7 @@ export default function ScopePage() {
           </div>
         </div>
       </main>
-      
+
       <Footer />
     </div>
   );

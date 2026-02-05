@@ -16,7 +16,7 @@ export default function Header() {
     { label: 'Current', href: '/pages/Current' },
     { label: 'Archives', href: '/pages/Archives' },
     { label: 'Support', href: '/pages/Support' },
-    { label: 'Paper Submission', href: '/call-for-papers' },
+    { label: 'Editorial Board Members', href: '/call-for-papers' },
     { label: 'Special Issues', href: '/special-issues' },
   ];
 
@@ -32,12 +32,16 @@ export default function Header() {
             <div>
               <h1 className="text-xl md:text-2xl font-bold text-gray-900 leading-tight">
                 International Journal of<br />
-                Interdisciplinary Organizational Studies
+               Engineering Education
               </h1>
             </div>
           </Link>
           
           <div className="hidden md:flex items-center space-x-2 bg-blue-50 px-4 py-2 rounded-lg">
+            <span className="text-sm font-semibold text-gray-700">ISSN:</span>
+            <span className="text-sm text-blue-600 font-mono">2324-7657</span>
+          </div>  
+           <div className="hidden md:flex items-center space-x-2 bg-blue-50 px-4 py-2 rounded-lg">
             <span className="text-sm font-semibold text-gray-700">ISSN:</span>
             <span className="text-sm text-blue-600 font-mono">2324-7657</span>
           </div>
