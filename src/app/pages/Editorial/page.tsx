@@ -60,7 +60,8 @@ export default function ScopePage() {
             {/* Research Areas */}
             <section className="bg-white rounded-2xl shadow-lg p-8 md:p-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-6 border-b-4 border-blue-600 pb-3 text-center">
-                Editorial Board Members
+                Editorial Board
+              
               </h2>
 
 
@@ -73,12 +74,12 @@ export default function ScopePage() {
                   </h3>
                   <ul className="space-y-3">
                     <li className="flex flex-col">
-                      <span className="font-medium">David Knight</span>
-                      <span className="text-gray-600">Virginia Tech</span>
+                      <span className="font-bold">David Knight</span>
+                      <span className="text-gray-900">Virginia Tech</span>
                     </li>
                     <li className="flex flex-col">
-                      <span className="font-medium">Joyce Main</span>
-                      <span className="text-gray-600">Purdue University</span>
+                      <span className="font-bold">Joyce Main</span>
+                      <span className="text-gray-900">Purdue University</span>
                     </li>
                   </ul>
                 </div>
@@ -334,7 +335,7 @@ export default function ScopePage() {
               <h3 className="text-xl font-bold text-gray-900 mb-4">Related Pages</h3>
               <div className="space-y-2">
                 <a href="/about" className="block text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors">
-                  → About IJOS
+                  → About JEE
                 </a>
                 <a href="/editorial-policies" className="block text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors">
                   → Editorial Policies

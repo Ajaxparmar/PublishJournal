@@ -33,10 +33,10 @@ export default function Footer() {
           {/* About Section */}
           <div>
             <h3 className="text-white font-bold text-lg mb-4 border-b-2 border-blue-600 pb-2 inline-block">
-              About IJOS
+              About JEE
             </h3>
             <p className="text-sm text-gray-400 mb-4">
-              International Journal of Interdisciplinary Organizational Studies explores 
+              International Journal of Engineering Education explores 
               the social dynamics of public, community, and privately owned organizations.
             </p>
             <div className="flex space-x-3">
@@ -99,14 +99,14 @@ export default function Footer() {
               <div className="flex items-start">
                 <MapPin className="w-5 h-5 text-blue-400 mr-2 mt-1 flex-shrink-0" />
                 <div>
-                  <p>540 Upland Avenue</p>
-                  <p>Reading, PA 19611</p>
+                  <p>101 Station Landing Suite 300</p>
+                  <p>Medford, MA 02155, USA</p>
                 </div>
               </div>
               <div className="flex items-center">
                 <Phone className="w-5 h-5 text-blue-400 mr-2 flex-shrink-0" />
                 <a href="tel:610-796-8270" className="hover:text-blue-400 transition-colors">
-                  610-796-8270
+                  +1 781 388 8508
                 </a>
               </div>
               <div className="flex items-center">
@@ -115,7 +115,7 @@ export default function Footer() {
                   href="mailto:office@cg-scholar-organizationalstudies.org"
                   className="hover:text-blue-400 transition-colors break-all"
                 >
-                  office@cg-scholar-organizationalstudies.org
+                  editor@onlinelibrarywileys.com
                 </a>
               </div>
             </div>
@@ -142,24 +142,21 @@ export default function Footer() {
         <div className="border-t border-gray-700 pt-8 mb-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
             <div>
-              <span className="text-gray-400">ISSN Print:</span>
-              <span className="text-white ml-2 font-mono">2324-7649</span>
+              <span className="text-gray-400">Online ISSN :</span>
+              <span className="text-white ml-2 font-mono">2168-9830</span>
             </div>
             <div>
-              <span className="text-gray-400">ISSN Online:</span>
-              <span className="text-white ml-2 font-mono">2324-7657</span>
+              <span className="text-gray-400">Print ISSN :</span>
+              <span className="text-white ml-2 font-mono">1069-4730</span>
             </div>
-            <div>
-              <span className="text-gray-400">Impact Factor:</span>
-              <span className="text-white ml-2 font-bold">7.89</span>
-            </div>
+           
           </div>
         </div>
 
         {/* Copyright */}
         <div className="border-t border-gray-700 pt-6 text-center">
           <p className="text-sm text-gray-400">
-            Copyright © {currentYear}, CG Scholar. All Rights Reserved.
+            Copyright American Society for Engineering Education.
           </p>
           <p className="text-xs text-gray-500 mt-2">
             Licensed under CC BY 4.0 Creative Commons Attribution 4.0 License

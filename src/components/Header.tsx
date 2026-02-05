@@ -16,7 +16,7 @@ export default function Header() {
     { label: 'Current', href: '/pages/Current' },
     { label: 'Archives', href: '/pages/Archives' },
     { label: 'Support', href: '/pages/Support' },
-    { label: 'Editorial Board Members', href: '/call-for-papers' },
+    { label: 'Editorial Board', href: '/call-for-papers' },
     { label: 'Special Issues', href: '/special-issues' },
   ];
 
@@ -26,8 +26,9 @@ export default function Header() {
         {/* Top Bar with Logo and ISSN */}
         <div className="py-4 flex items-center justify-between border-b border-gray-200">
           <Link href="/" className="flex items-center space-x-4">
-            <div className="w-16 h-16 bg-blue-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-2xl">JEE</span>
+            <div className=" rounded-lg flex items-center justify-center">
+             
+              <img src="/logo.jpeg" alt="Journal Logo" width={148} height={148} className="ml-2" />
             </div>
             <div>
               <h1 className="text-xl md:text-2xl font-bold text-gray-900 leading-tight">
@@ -36,15 +37,18 @@ export default function Header() {
               </h1>
             </div>
           </Link>
-          
-          <div className="hidden md:flex items-center space-x-2 bg-blue-50 px-4 py-2 rounded-lg">
-            <span className="text-sm font-semibold text-gray-700">ISSN:</span>
-            <span className="text-sm text-blue-600 font-mono">2324-7657</span>
+          <div className='mb-2 flex flex-col space-y-2'>
+             <div className="hidden md:flex items-center space-x-2 bg-blue-50 px-4 py-2 rounded-lg">
+            <span className="text-sm font-bold text-gray-700">Online ISSN:</span>
+            <span className="text-sm text-blue-600 font-mono">2168-9830</span>
           </div>  
            <div className="hidden md:flex items-center space-x-2 bg-blue-50 px-4 py-2 rounded-lg">
-            <span className="text-sm font-semibold text-gray-700">ISSN:</span>
+            <span className="text-sm font-bold text-gray-700">Print ISSN:</span>
             <span className="text-sm text-blue-600 font-mono">2324-7657</span>
           </div>
+
+          </div>
+       
         </div>
 
         {/* Navigation */}

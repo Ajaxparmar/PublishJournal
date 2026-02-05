@@ -39,7 +39,7 @@ export default function SupportPage() {
       questions: [
         {
           q: 'How do I submit my manuscript?',
-          a: 'You can submit your manuscript through our online submission form or directly via email to office@cg-scholar-organizationalstudies.org. Please ensure your manuscript follows our template guidelines.',
+          a: 'You can submit your manuscript through our online submission form or directly via email to editor@onlinelibrarywileys.com. Please ensure your manuscript follows our template guidelines.',
         },
         {
           q: 'What is the review process timeline?',
@@ -115,9 +115,9 @@ export default function SupportPage() {
     {
       icon: Phone,
       title: 'Phone',
-      detail: '610-796-8270',
-      description: 'Monday - Friday, 9 AM - 5 PM EST',
-      action: 'tel:+1 781 388 8590',
+      detail: '+1 781 388 8508',
+      description: 'Monday - Friday, 9 AM - 5 PM UTC',
+      
     },
     {
       icon: MapPin,

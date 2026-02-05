@@ -10,26 +10,23 @@ export default function Sidebar() {
   const [password, setPassword] = useState('');
 
   const notifications = [
-    { id: 14, text: 'Submission open for Volume 21, Issue 1, 2026' },
-    { id: 13, text: 'Submission open for Volume 20, Issue 2, 2025' },
-    { id: 11, text: 'Submission open for Volume 20, Issue 1, 2025' },
-    { id: 10, text: 'Submission open for Special Issue-Apr 2024' },
-    { id: 9, text: 'Submission open for Special Issue-Feb 2024' },
-    { id: 12, text: 'Submission open for Volume 19 No. 2, 2024' },
+    { id: 14, text: 'Submission open for Volume 115, Issue 1, 2026' },
+    { id: 13, text: 'Submission open for Volume 114, Issue 2, 2025' },
+    { id: 11, text: 'Submission open for Volume 113, Issue 1, 2025' },
+    { id: 10, text: 'Submission open for Special Issue-Apr 2023' },
+    { id: 9, text: 'Submission open for Special Issue-Feb 2023' },
+    { id: 12, text: 'Submission open for Volume 115 No. 1, 2026' },
   ];
 
-const indexingServices = [
-  { name: 'Scopus', logo: '/images/scopus.png' },                    // Elsevier's Scopus
-  { name: 'WoS', logo: '/images/wos.png' },                          // Web of Science (Clarivate)
-  { name: 'SCI-E', logo: '/images/scie.png' },                       // Science Citation Index Expanded
-  { name: 'SSCI', logo: '/images/ssci.png' },                        // Social Sciences Citation Index
-  { name: 'AHCI', logo: '/images/ahci.png' },                        // Arts & Humanities Citation Index
-  { name: 'COMPENDEX', logo: '/images/compendex.png' },              // Elsevier's engineering database
-  { name: 'INSPEC', logo: '/images/inspec.png' },                    // IET's physics/engineering index
-  { name: 'EBSCO', logo: '/images/ebsco.png' },                      // Covers multiple EBSCO services (Academic Search, Education Index, etc.)
-  { name: 'ProQuest', logo: '/images/proquest.png' },                // Covers Education Collection, Central, SciTech, STEM, etc.
-  { name: 'HW Wilson', logo: '/images/hwwilson.png' },              // OmniFile, Education Full Text, Science Full Text Select
-];
+  const indexingServices = [
+    { name: 'Scopus', logo: '/images/scopus.png' },
+    { name: 'EBSCO', logo: '/images/ebsco.png' },
+    { name: 'Cabell\'s', logo: '/images/cabells.png' },
+    { name: 'Ulrich\'s', logo: '/images/ulrichs.png' },
+    { name: 'Index Copernicus', logo: '/images/ic.png' },
+    { name: 'ERIC', logo: '/images/eric.png' },
+    { name: 'ZDB', logo: '/images/zdb.png' },
+  ];
 
   const quickLinks = [
     { label: 'Editorial Team', href: '/editorial-team' },

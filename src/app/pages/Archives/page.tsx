@@ -394,7 +394,7 @@ export default async function ArchivesPage() {
             </section>
 
             <section>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Browse by Year</h2>
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">Volumes</h2>
 
               {sortedVolumes.length === 0 ? (
                 <div className="bg-white rounded-2xl shadow-lg p-8 text-center text-gray-500">

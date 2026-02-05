@@ -11,28 +11,24 @@ const databases = [
   'Education Collection (ProQuest)',
   'Education Database (ProQuest)',
   'Education Full Text (HW Wilson)',
-  'Education Index/Abstracts (EBSCO Publishing)',
   'Education Research Complete (EBSCO Publishing)',
   'INSPEC (IET)',
   'Materials Science & Engineering Database (ProQuest)',
   'OmniFile Full Text Mega Edition (HW Wilson)',
-  'OmniFile Full Text Select (HW Wilson)',
   'ProQuest Central (ProQuest)',
   'ProQuest Central K-318',
   'ProQuest Professional Education (ProQuest)',
   'Research Library (ProQuest)',
-  'Research Library Prep (ProQuest)',
-  'Science Citation Index Expanded (Clarivate Analytics)',
-  'Science Full Text Select (HW Wilson)',
-  'SciTech Premium Collection (ProQuest)',
-  'SCOPUS (Elsevier)',
+  'Science Citation Index Expanded',
+  'SciTech Premium Collection',
+  'SCOPUS',
   'Social Science Premium Collection (ProQuest)',
-  'Social Sciences Citation Index (Clarivate Analytics)',
+  'Social Sciences Citation Index',
   'STEM Database (ProQuest)',
   'Technology Collection (ProQuest)',
-  'Web of Science (Clarivate Analytics)',
+  'Web of Science',
   "Ulrich's Periodicals Directory",  // From your array – confirmed
-  'Scopus',                          // From your array (duplicate removed, kept for emphasis)
+   ,                          // From your array (duplicate removed, kept for emphasis)
 ];
 
   const metrics = [

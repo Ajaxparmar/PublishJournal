@@ -131,7 +131,7 @@ export default function AnnouncementsSection() {
     {
       icon: DollarSign,
       title: 'Article Processing Charge',
-      description: 'USD 2000.00 / EUR 1,696',
+      description: 'USD $3170.00',
     },
   ];
 
