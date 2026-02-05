@@ -62,8 +62,10 @@ model Paper {
   keywords  String[]
   Abstract String?
   pdfUrl    String
+  imageUrl  String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
 
   volumeId String @db.ObjectId
   volume   Volume @relation(fields: [volumeId], references: [id], onDelete: Cascade)

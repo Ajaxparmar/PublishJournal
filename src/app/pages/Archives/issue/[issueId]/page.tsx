@@ -24,7 +24,8 @@ interface Paper {
   authors: Author[];
 }
 
-async function getCurrentIssuePapers() {
+async function getCurrentIssuePapers(issueId: string) {
+  {
   // Replace with your actual logic to fetch the **current/latest** issue
   // For now using the specific issueId from your example data
   try {
@@ -43,7 +44,7 @@ async function getCurrentIssuePapers() {
     console.error('Fetch error:', err);
     return [];
   }
-}
+};
 
 // Derive display values from real DB data
 function getIssueDisplayInfo(papers: Paper[]) {
@@ -67,8 +68,14 @@ function getIssueDisplayInfo(papers: Paper[]) {
   };
 }
 
-export default async function CurrentIssuePage() {
-  const papers = await getCurrentIssuePapers();
+export default async function CurrentIssuePage({
+  params,
+}: {
+  params: { issueId: string };
+}) {
+
+  
+  const papers = await getCurrentIssuePapers(params.issueId);
   const info = getIssueDisplayInfo(papers);
 
   if (!info) {
