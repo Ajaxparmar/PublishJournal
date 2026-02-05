@@ -37,6 +37,11 @@ const navItems = [
     icon: FileText,
   },
   {
+    title: "Published articles",
+    href: "/admin/published",
+    icon: FileText,
+  },
+  {
     title: "Issues",
     href: "/admin/issues",
     icon: FileText,

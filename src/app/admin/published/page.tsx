@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { AdminLayout } from "@/components/admin/AdminLayout";
 import {
   Table,
   TableBody,
@@ -155,18 +156,15 @@ export default function PapersAdminPage() {
       const volJson = await volRes.json();
       const issueJson = await issueRes.json();
 
-      if (papersJson.success) setPapers(papersJson.data || []);
-      if (volJson.success) setVolumes(volJson.data || []);
-      if (issueJson.success) setIssues(issueJson.data || []);
+      if (papersJson.success) setPapers(papersJson.data);
+      if (volJson.success) setVolumes(volJson.data);
+      if (issueJson.success) setIssues(issueJson.data);
     } catch (err) {
       toast.error("Failed to load data");
     } finally {
       setLoading(false);
     }
   };
-
-  // ── Filter: show everything EXCEPT published ───────────────────────────────
-  const workingPapers = papers.filter((paper) => paper.status !== "PUBLISHED");
 
   const handleViewClick = (paper: Paper) => {
     setViewPaper(paper);
@@ -346,15 +344,18 @@ export default function PapersAdminPage() {
     }
   };
 
+  const publishedPapers = papers.filter((paper) => paper.status === "PUBLISHED");
+
   return (
-      <div className="space-y-6 p-6 w-full">
-        <div className="flex items-center justify-between">
-          <h2 className="text-3xl font-bold tracking-tight">Papers Management</h2>
-          <Button onClick={() => setAddOpen(true)}>
-            <Plus className="mr-2 h-4 w-4" />
-            Add Paper
-          </Button>
-        </div>
+    <div className="space-y-6 p-6">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <h2 className="text-3xl font-bold tracking-tight">Papers Management</h2>
+        <Button onClick={() => setAddOpen(true)}>
+          <Plus className="mr-2 h-4 w-4" />
+          Add Paper
+        </Button>
+      </div>
 
       {/* Add Dialog */}
       <Dialog open={addOpen} onOpenChange={setAddOpen}>
@@ -472,16 +473,12 @@ export default function PapersAdminPage() {
         </DialogContent>
       </Dialog>
 
-      {/* Papers Table – showing only non-published papers */}
+      {/* Papers Table – only showing PUBLISHED papers */}
       {loading ? (
         <div className="text-center py-12 text-muted-foreground">Loading papers...</div>
-      ) : workingPapers.length === 0 ? (
+      ) : publishedPapers.length === 0 ? (
         <div className="text-center py-12 border rounded-lg bg-muted/30 text-muted-foreground">
-          {papers.length === 0 ? (
-            "No papers found. Add your first paper."
-          ) : (
-            "All papers are currently published."
-          )}
+          No published papers found.
         </div>
       ) : (
         <div className="rounded-lg border overflow-hidden w-full">
@@ -497,7 +494,7 @@ export default function PapersAdminPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {workingPapers.map((paper) => (
+              {publishedPapers.map((paper) => (
                 <TableRow key={paper.id} className="hover:bg-muted/60 transition-colors">
                   <TableCell>
                     {paper.imageUrl ? (
@@ -576,7 +573,9 @@ export default function PapersAdminPage() {
       <Dialog open={viewOpen} onOpenChange={setViewOpen}>
         <DialogContent className="w-[95vw] max-w-7xl max-h-[90vh] flex flex-col p-0">
           <DialogHeader className="p-6 border-b">
-            <DialogTitle className="text-2xl font-bold">{viewPaper?.title}</DialogTitle>
+            <DialogTitle className="text-2xl font-bold">
+              {viewPaper?.title}
+            </DialogTitle>
           </DialogHeader>
 
           {viewPaper && (
@@ -848,7 +847,9 @@ export default function PapersAdminPage() {
                       <div>{selectedPaper.uploadedBy.email}</div>
                     </div>
                   ) : (
-                    <div className="text-muted-foreground italic">Unknown / System upload</div>
+                    <div className="text-muted-foreground italic">
+                      Unknown / System upload
+                    </div>
                   )}
                 </div>
                 <Label className="text-base font-medium">Change User Password</Label>
@@ -863,11 +864,9 @@ export default function PapersAdminPage() {
                     onChange={(e) => setEditForm({ ...editForm, newPassword: e.target.value })}
                     minLength={6}
                   />
-                  {editForm.newPassword &&
-                    editForm.newPassword.length > 0 &&
-                    editForm.newPassword.length < 6 && (
-                      <p className="text-xs text-red-600">Password must be at least 6 characters</p>
-                    )}
+                  {editForm.newPassword && editForm.newPassword.length > 0 && editForm.newPassword.length < 6 && (
+                    <p className="text-xs text-red-600">Password must be at least 6 characters</p>
+                  )}
                 </div>
               </div>
 

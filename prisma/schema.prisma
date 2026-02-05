@@ -65,11 +65,11 @@ model Paper {
   imageUrl  String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
+  status       PaperStatus  @default(SUBMITTED)
 
   volumeId String @db.ObjectId
   volume   Volume @relation(fields: [volumeId], references: [id], onDelete: Cascade)
-
+  
   issueId String? @db.ObjectId
   issue   Issue?  @relation(fields: [issueId], references: [id])
 
@@ -81,6 +81,17 @@ model Paper {
 
   @@map("papers")
 }
+
+enum PaperStatus {
+  SUBMITTED
+  UNDER_REVIEW
+  ACCEPTED
+  IN_PROCESS
+  PUBLISHED
+  REJECTED
+}
+
+
 model Issue {
   id       String @id @default(auto()) @map("_id") @db.ObjectId
   volumeId String @db.ObjectId
@@ -90,6 +101,7 @@ model Issue {
   year        Int? // e.g. 2026
   period      String? // e.g. "Jan-Jun", "Jul-Dec"
   description String?
+  imageUrl   String?
 
   papers Paper[]
 

@@ -1,5 +1,8 @@
+// app/admin/issues/page.tsx
 "use client";
-import { useState, useEffect } from "react";
+
+import { useState, useEffect, useRef } from "react";
+import { AdminLayout } from "@/components/admin/AdminLayout";
 import {
   Table,
   TableBody,
@@ -31,7 +34,7 @@ import {
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { Plus, Edit, Trash2 } from "lucide-react";
+import { Plus, Edit, Trash2, X } from "lucide-react";
 import { toast } from "sonner";
 
 interface Volume {
@@ -47,6 +50,7 @@ interface Issue {
   year?: number;
   period?: string;
   description?: string;
+  imageUrl?: string | null;
   isVisible: boolean;
   volume?: { name: string; years: string };
   _count?: { papers: number };
@@ -66,6 +70,8 @@ export default function IssuesAdminPage() {
     period: "",
     description: "",
   });
+  const [addImageFile, setAddImageFile] = useState<File | null>(null);
+  const [addImagePreview, setAddImagePreview] = useState<string | null>(null);
 
   // Edit modal
   const [editOpen, setEditOpen] = useState(false);
@@ -77,10 +83,16 @@ export default function IssuesAdminPage() {
     description: "",
     isVisible: true,
   });
+  const [editImageFile, setEditImageFile] = useState<File | null>(null);
+  const [editImagePreview, setEditImagePreview] = useState<string | null>(null);
+  const [imageCleared, setImageCleared] = useState(false);
 
   // Delete confirmation
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [issueToDelete, setIssueToDelete] = useState<Issue | null>(null);
+
+  const addImageRef = useRef<HTMLInputElement>(null);
+  const editImageRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     fetchData();
@@ -90,12 +102,10 @@ export default function IssuesAdminPage() {
     try {
       setLoading(true);
 
-      // Fetch issues
       const issuesRes = await fetch("/api/admin/issues");
       const issuesJson = await issuesRes.json();
       if (issuesJson.success) setIssues(issuesJson.data);
 
-      // Fetch volumes for dropdown
       const volumesRes = await fetch("/api/admin/volumes");
       const volumesJson = await volumesRes.json();
       if (volumesJson.success) setVolumes(volumesJson.data);
@@ -104,6 +114,32 @@ export default function IssuesAdminPage() {
     } finally {
       setLoading(false);
     }
+  };
+
+  // ── ADD: Image preview ──────────────────────────────────────────────
+  const handleAddImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setAddImageFile(file);
+      setAddImagePreview(URL.createObjectURL(file));
+    }
+  };
+
+  // ── EDIT: Image preview + clear ─────────────────────────────────────
+  const handleEditImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setEditImageFile(file);
+      setEditImagePreview(URL.createObjectURL(file));
+      setImageCleared(false);
+    }
+  };
+
+  const handleClearImage = () => {
+    setEditImageFile(null);
+    setEditImagePreview(null);
+    setImageCleared(true);
+    if (editImageRef.current) editImageRef.current.value = "";
   };
 
   // ── ADD ISSUE ────────────────────────────────────────────────────────
@@ -117,23 +153,30 @@ export default function IssuesAdminPage() {
     const loadingToast = toast.loading("Creating issue...");
 
     try {
+      const formData = new FormData();
+      formData.append("volumeId", addForm.volumeId);
+      formData.append("issueNumber", addForm.issueNumber);
+      if (addForm.year) formData.append("year", addForm.year);
+      if (addForm.period) formData.append("period", addForm.period);
+      if (addForm.description) formData.append("description", addForm.description);
+      if (addImageFile) formData.append("image", addImageFile);
+
       const res = await fetch("/api/admin/issues", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...addForm,
-          year: addForm.year ? Number(addForm.year) : undefined,
-        }),
+        body: formData,
       });
 
       const json = await res.json();
       if (json.success) {
         toast.success("Issue created", {
-          description: `Issue ${json.data.issueNumber} added to ${json.data.volume.name}`,
+          description: `Issue ${json.data.issueNumber} added`,
           id: loadingToast,
         });
         setAddOpen(false);
         setAddForm({ volumeId: "", issueNumber: "", year: "", period: "", description: "" });
+        setAddImageFile(null);
+        setAddImagePreview(null);
+        if (addImageRef.current) addImageRef.current.value = "";
         fetchData();
       } else {
         toast.error("Failed to create issue", {
@@ -156,6 +199,9 @@ export default function IssuesAdminPage() {
       description: issue.description || "",
       isVisible: issue.isVisible,
     });
+    setEditImageFile(null);
+    setEditImagePreview(issue.imageUrl || null);
+    setImageCleared(false);
     setEditOpen(true);
   };
 
@@ -166,14 +212,25 @@ export default function IssuesAdminPage() {
     const loadingToast = toast.loading("Updating issue...");
 
     try {
+      const formData = new FormData();
+      formData.append("id", selectedIssue.id);
+      formData.append("issueNumber", editForm.issueNumber);
+      if (editForm.year) formData.append("year", editForm.year);
+      if (editForm.period) formData.append("period", editForm.period);
+      if (editForm.description) formData.append("description", editForm.description);
+      formData.append("isVisible", editForm.isVisible.toString());
+
+      // Image handling
+      if (editImageFile) {
+        formData.append("image", editImageFile);
+      } else if (imageCleared) {
+        formData.append("imageUrl", "null");
+      }
+      // If neither → do NOT send image keys → backend keeps existing
+
       const res = await fetch("/api/admin/issues", {
         method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          id: selectedIssue.id,
-          ...editForm,
-          year: editForm.year ? Number(editForm.year) : undefined,
-        }),
+        body: formData,
       });
 
       const json = await res.json();
@@ -301,6 +358,25 @@ export default function IssuesAdminPage() {
                 />
               </div>
 
+              <div className="grid gap-2">
+                <Label>Issue Cover Image</Label>
+                <Input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleAddImageChange}
+                  ref={addImageRef}
+                />
+                {addImagePreview && (
+                  <div className="mt-2">
+                    <img
+                      src={addImagePreview}
+                      alt="Preview"
+                      className="h-32 w-full object-cover rounded border shadow-sm"
+                    />
+                  </div>
+                )}
+              </div>
+
               <DialogFooter>
                 <Button type="button" variant="outline" onClick={() => setAddOpen(false)}>
                   Cancel
@@ -323,6 +399,7 @@ export default function IssuesAdminPage() {
             <Table>
               <TableHeader>
                 <TableRow>
+                  <TableHead>Cover</TableHead>
                   <TableHead>Volume</TableHead>
                   <TableHead>Issue Number</TableHead>
                   <TableHead>Year / Period</TableHead>
@@ -334,19 +411,39 @@ export default function IssuesAdminPage() {
               <TableBody>
                 {issues.map((issue) => (
                   <TableRow key={issue.id} className="hover:bg-muted/50">
+                    <TableCell>
+                      {issue.imageUrl ? (
+                        <img
+                          src={issue.imageUrl}
+                          alt="Issue cover"
+                          className="h-12 w-12 object-cover rounded border shadow-sm"
+                          onError={(e) => (e.currentTarget.src = "/placeholder.png")}
+                        />
+                      ) : (
+                        <div className="h-12 w-12 bg-muted rounded flex items-center justify-center text-xs text-muted-foreground">
+                          No image
+                        </div>
+                      )}
+                    </TableCell>
+
                     <TableCell className="font-medium">
                       {issue.volume?.name || "—"} ({issue.volume?.years || "—"})
                     </TableCell>
+
                     <TableCell>{issue.issueNumber}</TableCell>
+
                     <TableCell>
                       {issue.year || "—"} {issue.period ? `(${issue.period})` : ""}
                     </TableCell>
+
                     <TableCell>{issue._count?.papers || 0}</TableCell>
+
                     <TableCell>
                       <Badge variant={issue.isVisible ? "default" : "secondary"}>
                         {issue.isVisible ? "Yes" : "No"}
                       </Badge>
                     </TableCell>
+
                     <TableCell className="text-right space-x-2">
                       <Button
                         variant="ghost"
@@ -373,7 +470,7 @@ export default function IssuesAdminPage() {
 
         {/* Edit Dialog */}
         <Dialog open={editOpen} onOpenChange={setEditOpen}>
-          <DialogContent>
+          <DialogContent className="sm:max-w-md">
             <DialogHeader>
               <DialogTitle>Edit Issue</DialogTitle>
             </DialogHeader>
@@ -387,30 +484,89 @@ export default function IssuesAdminPage() {
                     required
                   />
                 </div>
+
                 <div className="grid grid-cols-2 gap-4">
                   <div className="grid gap-2">
-                    <Label>Year</Label>
+                    <Label>Year (optional)</Label>
                     <Input
                       type="number"
                       value={editForm.year}
                       onChange={(e) => setEditForm({ ...editForm, year: e.target.value })}
+                      placeholder="2026"
                     />
                   </div>
                   <div className="grid gap-2">
-                    <Label>Period</Label>
+                    <Label>Period (optional)</Label>
                     <Input
                       value={editForm.period}
                       onChange={(e) => setEditForm({ ...editForm, period: e.target.value })}
+                      placeholder="Jan-Jun"
                     />
                   </div>
                 </div>
+
                 <div className="grid gap-2">
-                  <Label>Description</Label>
+                  <Label>Description (optional)</Label>
                   <Textarea
                     value={editForm.description}
                     onChange={(e) => setEditForm({ ...editForm, description: e.target.value })}
                   />
                 </div>
+
+                <div className="grid gap-2">
+                  <Label>Issue Cover Image</Label>
+                  <Input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleEditImageChange}
+                    ref={editImageRef}
+                  />
+
+                  {/* Preview area */}
+                  <div className="mt-2">
+                    {editImagePreview ? (
+                      <div className="relative inline-block">
+                        <img
+                          src={editImagePreview}
+                          alt="Preview"
+                          className="h-32 w-full object-cover rounded border shadow-sm"
+                        />
+                        <Button
+                          type="button"
+                          variant="destructive"
+                          size="icon"
+                          className="absolute top-1 right-1 h-6 w-6"
+                          onClick={handleClearImage}
+                        >
+                          <X className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    ) : selectedIssue.imageUrl ? (
+                      <div className="relative inline-block">
+                        <img
+                          src={selectedIssue.imageUrl}
+                          alt="Current cover"
+                          className="h-32 w-full object-cover rounded border shadow-sm"
+                          onError={(e) => (e.currentTarget.src = "/placeholder.png")}
+                        />
+                        <Button
+                          type="button"
+                          variant="destructive"
+                          size="icon"
+                          className="absolute top-1 right-1 h-6 w-6"
+                          onClick={handleClearImage}
+                        >
+                          <X className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    ) : (
+                      <div className="h-32 w-full bg-muted rounded flex items-center justify-center text-sm text-muted-foreground">
+                        No image
+                      </div>
+                    )}
+                  </div>
+                </div>
+
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
                     <Label>Visible</Label>
@@ -423,6 +579,7 @@ export default function IssuesAdminPage() {
                     onCheckedChange={(checked) => setEditForm({ ...editForm, isVisible: checked })}
                   />
                 </div>
+
                 <DialogFooter>
                   <Button type="button" variant="outline" onClick={() => setEditOpen(false)}>
                     Cancel

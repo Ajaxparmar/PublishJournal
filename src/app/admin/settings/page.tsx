@@ -8,7 +8,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 
 export default function SettingsPage() {
   return (
-    <AdminLayout>
       <div className="space-y-6">
         <h2 className="text-3xl font-bold tracking-tight">Settings</h2>
 
@@ -46,6 +45,5 @@ export default function SettingsPage() {
           </div>
         </div>
       </div>
-    </AdminLayout>
   );
 }

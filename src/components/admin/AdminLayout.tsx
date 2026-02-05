@@ -25,7 +25,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
         <MobileSidebar />
 
         {/* Main content */}
-        <main className="flex-1 overflow-auto lg:ml-72">
+        <main className="flex-1 overflow-auto lg:ml-32">
           <div className="p-4 md:p-6 lg:p-8">
             {children}
           </div>
