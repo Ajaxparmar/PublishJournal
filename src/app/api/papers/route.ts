@@ -197,15 +197,28 @@ export async function POST(req: NextRequest) {
 }
 
 
-;
 
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const issueId = searchParams.get('issueId')?.trim();
+
+    // ── Required check ────────────────────────────────────────
+    if (!issueId || issueId === 'undefined' || issueId.length < 10) {
+      // Early return - bad request
+      return NextResponse.json(
+        {
+          success: false,
+          error: 'Valid issueId is required in query string',
+          example: '/api/papers?issueId=6980823f2eefd3885915731f',
+        },
+        { status: 400 }
+      );
+    }
+
     const papers = await prisma.paper.findMany({
       where: {
-        ...(issueId ? { issueId } : {}),
+        issueId,           // no spread needed anymore
         isVisible: true,
       },
       include: {
@@ -217,13 +230,12 @@ export async function GET(request: NextRequest) {
             country: true,
             email: true,
           },
-          orderBy: { createdAt: 'asc' }, // or by fullName if you prefer
+          orderBy: { createdAt: 'asc' },
         },
-        // Optional: include volume & issue info (very useful for current issue page)
         volume: {
           select: {
             id: true,
-            name: true,        // "Volume 21"
+            name: true,
             years: true,
             description: true,
           },
@@ -233,50 +245,49 @@ export async function GET(request: NextRequest) {
             id: true,
             issueNumber: true,
             year: true,
+            imageUrl: true,
             period: true,
             description: true,
           },
         },
       },
-      orderBy: [
-        // Most common ordering for journal display
-        { createdAt: 'desc' },          // newest first
-        // Alternative: order by title or custom order field if you add one later
-        // { title: 'asc' },
-      ],
-      // Optional: pagination support (add later if needed)
-      // take: 20,
-      // skip: page * 20,
+      orderBy: [{ createdAt: 'desc' }],
+    });    
+    // Optional enrichment (improved typing & safety)
+    const enrichedPapers = papers.map((paper) => {
+      const volName = paper.volume?.name ?? '';
+      const issueNum = paper.issue?.issueNumber ?? '';
+
+      return {
+        ...paper,
+        displayDoi:
+          volName && issueNum
+            ? `10.18848/2324-7649/CGP/v${volName.replace('Volume ', '')}i${String(issueNum).padStart(2, '0')}/${paper.id.slice(0, 8)}`
+            : null,
+      };
     });
 
-    // Optional: enrich data if needed (e.g. compute full DOI, format dates, etc.)
-    const enrichedPapers = papers.map((paper: { volume: { name: string; }; issue: { issueNumber: unknown; }; id: string | unknown[]; }) => ({
-      ...paper,
-      // Example: generate a simple display DOI if you don't store it
-      displayDoi: paper.volume && paper.issue
-        ? `10.18848/2324-7649/CGP/v${paper.volume.name.replace('Volume ', '')}i0${paper.issue.issueNumber}/${paper.id.slice(0,8)}`
-        : null,
-      // publishedDate: new Date(paper.createdAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
-    }));
-
-    return NextResponse.json({
-      success: true,
-      data: enrichedPapers,
-      meta: {
-        count: papers.length,
-        issueId: issueId || null,
-        timestamp: new Date().toISOString(),
+    return NextResponse.json(
+      {
+        success: true,
+        data: enrichedPapers,
+        meta: {
+          count: papers.length,
+          issueId,
+          timestamp: new Date().toISOString(),
+        },
       },
-    }, { status: 200 });
-
+      { status: 200 }
+    );
   } catch (err: unknown) {
     console.error('[API /papers GET] Error:', err);
 
+    const isDev = process.env.NODE_ENV === 'development';
     return NextResponse.json(
       {
         success: false,
         error: 'Failed to fetch papers',
-        details: process.env.NODE_ENV === 'development' ? err : undefined,
+        details: isDev ? (err as Error).message : undefined,
       },
       { status: 500 }
     );

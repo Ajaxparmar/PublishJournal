@@ -83,7 +83,7 @@ export default function Sidebar() {
           console.log('Session data after login:', sessionData);
           
           if (sessionData?.user?.role === 'ADMIN') {
-            router.push('/admin');
+            router.push('/admin/users');
           } else {
             router.push('/pages/my-papers');
           }

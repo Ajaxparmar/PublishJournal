@@ -1,34 +1,34 @@
 // app/api/my-papers/route.ts
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
+import { getServerSession } from 'next-auth';
 import { prisma } from '@/lib/prisma';
-import jwt from 'jsonwebtoken';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route'; // adjust path if different
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
+export async function GET() {
+  const session = await getServerSession(authOptions);
 
-export async function GET(request: NextRequest) {
+  if (!session?.user?.id) {
+    return NextResponse.json(
+      { success: false, error: 'Not authenticated' },
+      { status: 401 }
+    );
+  }
+
+  const userId = session.user.id; // or session.user.email if you use email as id
+
   try {
-    const token = request.cookies.get('auth_token')?.value;
-
-    if (!token) {
-      return NextResponse.json(
-        { success: false, error: 'Not authenticated' },
-        { status: 401 }
-      );
-    }
-    const decoded = jwt.verify(token, JWT_SECRET) as { userId: string };
     const papers = await prisma.paper.findMany({
-      where: {
-        uploadedById: decoded.userId,
-      },
+      where: { uploadedById: userId },
       include: {
         volume: { select: { name: true } },
         issue: { select: { issueNumber: true } },
       },
       orderBy: { createdAt: 'desc' },
-    });   
+    });
+
     return NextResponse.json({ success: true, data: papers });
   } catch (error) {
-    console.error(error);
+    console.error('Error in /api/my-papers:', error);
     return NextResponse.json(
       { success: false, error: 'Failed to fetch papers' },
       { status: 500 }

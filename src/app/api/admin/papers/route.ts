@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import path from "path";
 import fs from "fs/promises";
 import { v4 as uuidv4 } from "uuid";
+import bcrypt from "bcryptjs";
 import { getServerSession } from "next-auth"; // adjust if using different auth
 // import { authOptions } from "@/app/api/auth/[...nextauth]/route"; // uncomment & adjust
 
@@ -128,7 +129,9 @@ export async function PATCH(request: NextRequest) {
   try {
     const formData = await request.formData();
     const id = formData.get("id") as string;
+    console.log(`Updating paper with ID: ${formData}`);
 
+    
     if (!id) {
       return NextResponse.json({ success: false, error: "Paper ID required" }, { status: 400 });
     }
@@ -136,12 +139,13 @@ export async function PATCH(request: NextRequest) {
     // Fetch current paper to compare & clean up files
     const currentPaper = await prisma.paper.findUnique({
       where: { id },
-      select: { pdfUrl: true, imageUrl: true, volumeId: true, issueId: true },
+      select: { pdfUrl: true, imageUrl: true, volumeId: true, issueId: true , uploadedById: true,},
     });
 
     if (!currentPaper) {
       return NextResponse.json({ success: false, error: "Paper not found" }, { status: 404 });
     }
+    const updatedByUserId = currentPaper.uploadedById;
 
     const title = formData.get("title") as string | null;
     const abstract = formData.get("abstract") as string | null;
@@ -153,8 +157,23 @@ export async function PATCH(request: NextRequest) {
     const issueId = formData.get("issueId") as string | null;
     const isVisibleStr = formData.get("isVisible") as string | null;
     const status = formData.get("status") as string | null;
+    const password = formData.get("newPassword") as string | null;
 
     const updateData: Record<string, unknown> = {};
+
+    console.log("password",password); // Debug log
+    
+    if (password && password.trim().length >= 6) {
+      const hashedPassword = await bcrypt.hash(password, 10);
+    
+      await prisma.user.update({
+        where: { id: currentPaper.uploadedById ?? undefined },
+        data: { password: hashedPassword },
+      });
+      console.log(`Password updated for user ID: ${updatedByUserId}`); // Debug log
+      
+    }
+    
 
     if (title) updateData.title = title;
     if (abstract !== null) updateData.Abstract = abstract;

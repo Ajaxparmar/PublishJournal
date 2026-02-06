@@ -8,6 +8,9 @@ import { Button } from '@/components/ui/button';
 import { FileText, Download } from 'lucide-react';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+
 
 interface Paper {
   id: string;
@@ -65,6 +68,7 @@ export default function MyPapersPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100">
+      <Header />
       <div className="container mx-auto px-4 py-12">
         <h1 className="text-4xl font-bold text-center text-gray-900 mb-12">
           My Submitted Papers
@@ -217,6 +221,7 @@ export default function MyPapersPage() {
           </div>
         )}
       </div>
+      <Footer />
     </div>
   );
 }
