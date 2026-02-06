@@ -61,6 +61,7 @@ model Paper {
   // Removed single authorFullName, organization, country, email
   // → now stored in related Author records
   keywords  String[]
+  otherAuthors String[]
   Abstract String?
   pdfUrl    String
   imageUrl  String?
@@ -98,7 +99,7 @@ model Issue {
   volumeId String @db.ObjectId
   volume   Volume @relation("VolumeIssues", fields: [volumeId], references: [id], onDelete: Cascade)
 
-  issueNumber String // e.g. "1", "2", "Jan-Feb"
+  issueNumber String  // e.g. "1", "2", "Jan-Feb"
   year        Int? // e.g. 2026
   period      String? // e.g. "Jan-Jun", "Jul-Dec"
   description String?

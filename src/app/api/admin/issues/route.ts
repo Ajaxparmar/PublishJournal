@@ -8,24 +8,95 @@ import { v4 as uuidv4 } from "uuid";
 // Directory where uploaded issue cover images will be saved
 const UPLOAD_DIR = path.join(process.cwd(), "public/uploads/issues");
 
-export async function GET() {
-  try {
-    const issues = await prisma.issue.findMany({
-      include: {
-        volume: { select: { name: true, years: true } },
-        _count: { select: { papers: true } },
-      },
-      orderBy: [
-        { volume: { years: "desc" } },
-        { issueNumber: "asc" },
-      ],
-    });
+import { getServerSession } from "next-auth"; 
 
-    return NextResponse.json({ success: true, data: issues });
-  } catch (error) {
-    console.error("GET /admin/issues error:", error);
+export async function GET(request: NextRequest) {
+  const session = await getServerSession(); // Optional: protect admin routes
+  if (!session) {
     return NextResponse.json(
-      { success: false, error: "Failed to fetch issues" },
+      { success: false, error: "Not authenticated" },
+      { status: 401 }
+    );
+  }
+  const { searchParams } = new URL(request.url);
+  const volumeId = searchParams.get("volumeId");
+  const select = searchParams.get("select"); // "issueNumber" for duplicate check
+  const fullList = !volumeId && !select; // normal list when no params
+
+  try {
+    // ── Special case: Frontend duplicate check ─────────────────────────────
+    if (volumeId && select === "issueNumber") {
+      const issues = await prisma.issue.findMany({
+        where: {
+          volumeId,
+        },
+        select: {
+          issueNumber: true,
+        },
+        orderBy: {
+          issueNumber: "asc",
+        },
+      });
+
+      return NextResponse.json({
+        success: true,
+        data: issues,
+      });
+    }
+
+    // ── Normal full list (for the table) ───────────────────────────────────
+    if (fullList) {
+      const issues = await prisma.issue.findMany({
+        include: {
+          volume: {
+            select: {
+              name: true,
+              years: true,
+            },
+          },
+          _count: {
+            select: {
+              papers: true,
+            },
+          },
+        },
+        orderBy: [
+          { volume: { name: "asc" } },
+          { issueNumber: "asc" },
+        ],
+      });
+
+      return NextResponse.json({
+        success: true,
+        data: issues,
+      });
+    }
+
+    // ── Optional: Filter by volumeId only (if needed in future) ────────────
+    if (volumeId) {
+      const issues = await prisma.issue.findMany({
+        where: { volumeId },
+        include: {
+          volume: {
+            select: { name: true, years: true },
+          },
+          _count: { select: { papers: true } },
+        },
+        orderBy: { issueNumber: "asc" },
+      });
+
+      return NextResponse.json({ success: true, data: issues });
+    }
+
+    // Fallback - bad request
+    return NextResponse.json(
+      { success: false, error: "Invalid query parameters" },
+      { status: 400 }
+    );
+  } catch (error) {
+    console.error("GET /api/admin/issues error:", error);
+    return NextResponse.json(
+      { success: false, error: "Internal server error" },
       { status: 500 }
     );
   }

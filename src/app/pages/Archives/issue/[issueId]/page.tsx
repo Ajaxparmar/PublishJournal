@@ -17,6 +17,7 @@ interface Paper {
   title: string;
   keywords: string[];
   Abstract?: string;
+  otherAuthors: string[];
   pdfUrl: string;
   createdAt: string;
   volumeId: string;
@@ -72,7 +73,7 @@ function deriveIssueDisplayInfo(papers: Paper[]) {
   const cleanVolume = volumeName.replace(/^Volume\s+/i, '');
 
   return {
-    journalShort: 'IJOS',
+    journalShort: 'JEE',
     volume: cleanVolume,
     issue: issueNumber,
     year: latestDate.getFullYear(),
@@ -178,10 +179,10 @@ export default async function IssuePage({
                     {info.period} {info.year}
                   </p>
                 </div>
-                <div className="bg-blue-50 rounded-xl p-5">
+                {/* <div className="bg-blue-50 rounded-xl p-5">
                   <p className="text-sm text-gray-600 mb-1">Published</p>
                   <p className="text-xl font-bold text-gray-900">{info.publishedDate}</p>
-                </div>
+                </div> */}
                 <div className="bg-blue-50 rounded-xl p-5">
                   <p className="text-sm text-gray-600 mb-1">Journal</p>
                   <p className="text-xl font-bold text-gray-900">{info.journalShort}</p>
@@ -207,25 +208,22 @@ export default async function IssuePage({
 
                     <div className="flex items-start mb-5 text-gray-700">
                       <User className="w-5 h-5 text-gray-500 mr-2.5 mt-1 flex-shrink-0" />
-                      <div className="flex flex-wrap gap-x-2 gap-y-1">
-                        {paper.authors.map((author, idx) => (
-                          <span key={author.id}>
-                            {author.fullName}
-                            {idx < paper.authors.length - 1 && ', '}
+
+                      <div className="font-semibold">
+                        {[
+                          ...paper.authors.map(a => a.fullName),
+                          ...(paper.otherAuthors ?? [])
+                        ].map((name, idx, arr) => (
+                          <span key={idx}>
+                            {name}
+                            {idx < arr.length - 1 ? ', ' : '.'}
                           </span>
                         ))}
                       </div>
                     </div>
 
-                    <div className="flex flex-wrap gap-3 mb-5 text-sm">
-                      <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full font-medium">
-                        Published: {new Date(paper.createdAt).toLocaleDateString('en-US', {
-                          month: 'short',
-                          day: 'numeric',
-                          year: 'numeric',
-                        })}
-                      </span>
-                    </div>
+
+          
 
                     {paper.Abstract && (
                       <div className="mb-6">
@@ -243,15 +241,15 @@ export default async function IssuePage({
                           {paper.keywords.map((kw, i) => (
                             <span
                               key={i}
-                              className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm"
+                              className="text-gray-700 rounded-full text-sm"
                             >
                               {kw}
+                              {i === paper.keywords.length - 1 ? '.' : ','}
                             </span>
                           ))}
                         </div>
                       </div>
                     )}
-
                     <div className="flex flex-wrap gap-4">
                       <a
                         href={paper.pdfUrl}
@@ -283,8 +281,8 @@ export default async function IssuePage({
               <h3 className="text-xl font-bold text-gray-900 mb-5 text-center">
                 Issue Overview
               </h3>
-            
-            <img src={info.imageUrl || '/default-issue-cover.jpg'} alt={`Cover for Volume ${info.volume}, Issue ${info.issue}`} className="w-full h-auto rounded-lg mb-5" />
+
+              <img src={info.imageUrl || '/default-issue-cover.jpg'} alt={`Cover for Volume ${info.volume}, Issue ${info.issue}`} className="w-full h-auto rounded-lg mb-5" />
             </div>
           </aside>
         </div>

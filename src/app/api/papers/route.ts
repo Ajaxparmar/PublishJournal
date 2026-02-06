@@ -253,6 +253,8 @@ export async function GET(request: NextRequest) {
       },
       orderBy: [{ createdAt: 'desc' }],
     });    
+    console.log("Fetched papers for issueId:", papers);
+    
     // Optional enrichment (improved typing & safety)
     const enrichedPapers = papers.map((paper) => {
       const volName = paper.volume?.name ?? '';
