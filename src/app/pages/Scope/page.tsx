@@ -98,7 +98,7 @@ export default function ScopePage() {
         'Social Sciences in Engineering',
         'Engineering Policy',
         'Science and Technology Studies',
-        'Engineering Ethics',
+    
 
         // Psychology & Cognitive Sciences
         'Psychology',

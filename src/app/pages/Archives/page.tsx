@@ -327,7 +327,7 @@ interface Volume {
 
 async function getVolumes() {
   try {
-    const res = await fetch('http://localhost:3000/api/volumes', {
+    const res = await fetch('http://localhost:3001/api/volumes', {
       cache: 'no-store',
     });
 

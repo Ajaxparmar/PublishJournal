@@ -106,7 +106,6 @@ export default function AnnouncementsSection() {
   'Sustainability',
   'Sustainable Engineering',
   'Environmental Ethics',
-  'Engineering Ethics',
   'Professional Responsibility',
   'Diversity, Equity, and Inclusion in Engineering',
   'Professional Formation of Engineers',
