@@ -122,8 +122,8 @@ export default function Header() {
     { label: 'Current', href: '/pages/Current' },
     { label: 'Archives', href: '/pages/Archives' },
     { label: 'Support', href: '/pages/Support' },
-    { label: 'Editorial Board', href: '/call-for-papers' },
-    { label: 'Special Issues', href: '/special-issues' },
+    { label: 'Editorial Board', href: '/pages/Editorial' },
+    { label: 'Special Issues', href: '/pages/special-issues' },
   ];
 
   return (

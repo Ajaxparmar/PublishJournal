@@ -163,7 +163,7 @@ export default function ScopePage() {
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900">Focus & Scope</h1>
           </div>
           <p className="text-xl text-gray-600 leading-relaxed">
-            Our journal covers interdisciplinary research in organizational studies, exploring the social dynamics
+            Our journal covers interdisciplinary research in International Journal of Engineering Education, exploring the social dynamics
             of public, community, and privately owned organizations.
           </p>
         </div>
@@ -302,13 +302,13 @@ export default function ScopePage() {
             <div className="bg-white rounded-2xl shadow-lg p-6">
               <h3 className="text-xl font-bold text-gray-900 mb-4">Related Pages</h3>
               <div className="space-y-2">
-                <a href="/about" className="block text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors">
-                  → About IJOS
+                <a href="/pages/About" className="block text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors">
+                  → About JEE
                 </a>
-                <a href="/editorial-policies" className="block text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors">
+                <a href="/pages/Editorial" className="block text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors">
                   → Editorial Policies
                 </a>
-                <a href="/publication-ethics" className="block text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors">
+                <a href="/pages/Editorial" className="block text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors">
                   → Publication Ethics
                 </a>
               </div>

@@ -47,15 +47,20 @@ export async function POST(req: NextRequest) {
   }
 }
 
-// write delete api 
-
+// write delete api for volume
 export async function DELETE(req: NextRequest) {
   try {
-   
+    const { searchParams } = new URL(req.url);
+    const id = searchParams.get("id");
+    console.log("delete id",id);
+    
+    if (!id) {
+      return badRequest("Volume ID is required");
+    }
 
-    const existing = await prisma.volume.deleteMany();
-
-  
+    await prisma.volume.delete({
+      where: { id },
+    });
 
     return success("Volume deleted");
   } catch (err: unknown) {
@@ -63,7 +68,6 @@ export async function DELETE(req: NextRequest) {
     return serverError("Failed to delete volume", err instanceof Error ? err.message : undefined);
   }
 }
-
 
 
 export async function GET(req: NextRequest) {

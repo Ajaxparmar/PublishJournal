@@ -122,21 +122,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Resources Links */}
-        <div className="border-t border-gray-700 pt-8 mb-8">
-          <h4 className="text-white font-semibold mb-4">Resources</h4>
-          <div className="flex flex-wrap gap-4">
-            {footerLinks.resources.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-sm hover:text-blue-400 transition-colors duration-200"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
-        </div>
+   
 
         {/* Journal Details */}
         <div className="border-t border-gray-700 pt-8 mb-8">
@@ -147,7 +133,7 @@ export default function Footer() {
             </div>
             <div>
               <span className="text-gray-400">Print ISSN :</span>
-              <span className="text-white ml-2 font-mono">1069-4730</span>
+              <span className="text-white ml-2 font-mono">2324-7657</span>
             </div>
            
           </div>

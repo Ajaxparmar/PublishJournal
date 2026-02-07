@@ -61,7 +61,7 @@ export default function ScopePage() {
             <section className="bg-white rounded-2xl shadow-lg p-8 md:p-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-6 border-b-4 border-blue-600 pb-3 text-center">
                 Editorial Board
-              
+
               </h2>
 
 
@@ -272,6 +272,52 @@ export default function ScopePage() {
                 </div>
               </div>
 
+              {/* Publication Policies */}
+              <div className='mt-10 bg-blue-100 rounded-2xl shadow-lg p-8'id="Plolicies">
+                <h3 className="text-2xl font-semibold text-gray-900 mb-4 border-b-2 border-blue-500 pb-2 text-center">
+                  Publication Ethics
+                </h3>
+
+                <p className="text-gray-700 mb-4">
+                  Authors publishing in JEE are encouraged to familiarize themselves with the
+                  journal’s publication policies, which provide clear guidance on author
+                  rights, permitted re-use, and compliance with funder mandates. These
+                  policies cover key areas including manuscript sharing, licensing, and
+                  copyright arrangements.
+                </p>
+
+                <p className="text-gray-700 mb-4">
+                  For detailed information, please refer to the sections below or use the
+                  navigation menu provided on the journal website:
+                </p>
+
+                <ul className="list-disc pl-6 space-y-3 text-gray-700">
+                  <li>
+                    <span className="font-medium">Self-Archiving Policy</span><br />
+                    Information on permitted versions of manuscripts that may be deposited in
+                    institutional or subject repositories, including applicable embargo
+                    periods.
+                  </li>
+
+                  <li>
+                    <span className="font-medium">Accepted Manuscript (AM) Terms of Use</span><br />
+                    Guidelines governing the use, distribution, and citation of accepted
+                    (post-peer review) manuscript versions.
+                  </li>
+
+                  <li>
+                    <span className="font-medium">Funder Compliance</span><br />
+                    Details on how JEE supports compliance with funder open access mandates,
+                    including requirements related to licensing and repository deposit.
+                  </li>
+
+                  <li>
+                    <span className="font-medium">Copyright and Licensing</span><br />
+                    Explanation of copyright transfer or license-to-publish arrangements, as
+                    well as available open access licenses for published articles.
+                  </li>
+                </ul>
+              </div>
 
 
 
@@ -293,13 +339,13 @@ export default function ScopePage() {
               </p>
               <div className="space-y-2">
                 <a
-                  href="/submit"
+                  href="/pages/Submit"
                   className="block bg-blue-600 text-white text-center px-4 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
                 >
                   Submit Paper
                 </a>
                 <a
-                  href="/author-guidelines"
+                  href="/pages/Scope/author-guidelines"
                   className="block bg-gray-200 text-gray-700 text-center px-4 py-3 rounded-lg font-semibold hover:bg-gray-300 transition-colors"
                 >
                   Author Guidelines
@@ -337,12 +383,10 @@ export default function ScopePage() {
                 <a href="/about" className="block text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors">
                   → About JEE
                 </a>
-                <a href="/editorial-policies" className="block text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors">
+                <a href="#Plolicies" className="block text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors">
                   → Editorial Policies
                 </a>
-                <a href="/publication-ethics" className="block text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors">
-                  → Publication Ethics
-                </a>
+            
               </div>
             </div>
           </div>

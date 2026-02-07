@@ -116,9 +116,9 @@ export default function SearchSection({ initialVolumes }: SearchSectionProps) {
                         Issue {issue.issueNumber}
                       </h4>
                       <p className="text-sm text-gray-600 mb-1">{issue.period}</p>
-                      <p className="text-xs text-gray-500 mb-3">
+                      {/* <p className="text-xs text-gray-500 mb-3">
                         {issue.description || 'No description available'}
-                      </p>
+                      </p> */}
                       <p className="text-sm text-gray-700 mb-4">
                         <strong>{issue._count?.papers ?? 0}</strong> articles
                       </p>

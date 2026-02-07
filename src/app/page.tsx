@@ -20,7 +20,7 @@ export default function HomePage() {
             <AboutSection />
             <IndexingSection />
             <AnnouncementsSection />
-            <RecentArticles />
+          
           </div>
           
           {/* Sidebar */}

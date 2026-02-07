@@ -34,13 +34,12 @@ export default function Sidebar() {
   ];
 
   const quickLinks = [
-    { label: 'Editorial Team', href: '/editorial-team' },
-    { label: 'Editorial Policies', href: '/editorial-policies' },
-    { label: 'Focus & Scope', href: '/focus-and-scope' },
-    { label: 'Author Guidelines', href: '/author-guidelines' },
-    { label: 'Abstracting and Indexing', href: '/abstracting-and-indexing' },
-    { label: 'Publication Ethics', href: '/publication-ethics' },
-    { label: 'Paper Submission', href: '/call-for-papers' },
+    { label: 'Editorial Team', href: '/pages/Editorial' },
+    { label: 'Editorial Policies', href: '/pages/Editorial' },
+    { label: 'Focus & Scope', href: '/pages/Scope' },
+    { label: 'Author Guidelines', href: '/pages/Scope/author-guidelines' },
+    { label: 'Publication Ethics', href: '/pages/Editorial' },
+    { label: 'Paper Submission', href: '/pages/Submit' },
   ];
 
   const resources = [
@@ -135,7 +134,7 @@ export default function Sidebar() {
             <div className="space-y-2">
               {session.user?.role === 'ADMIN' ? (
                 <Link
-                  href="/admin"
+                  href="/admin/users"
                   className="block w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200 text-center"
                 >
                   Go to Admin Panel
@@ -216,7 +215,7 @@ export default function Sidebar() {
           {notifications.map((notification) => (
             <Link
               key={notification.id}
-              href={`/news/${notification.id}`}
+              href="#"
               className="block p-3 bg-blue-50 rounded-lg text-sm text-gray-700 hover:bg-blue-100 transition-colors duration-200 border-l-4 border-blue-600"
             >
               {notification.text}
@@ -228,19 +227,9 @@ export default function Sidebar() {
       {/* Indexing */}
       <div className="bg-white rounded-2xl shadow-lg p-6">
         <div className="flex items-center mb-4">
-          <Database className="w-5 h-5 text-blue-600 mr-2" />
-          <h3 className="text-lg font-bold text-gray-900">Indexing</h3>
+         <img src="/imagesk.jpeg" alt="Indexing Services" />
         </div>
-        <div className="grid grid-cols-2 gap-3">
-          {indexingServices.map((service) => (
-            <div
-              key={service.name}
-              className="bg-gray-50 rounded-lg p-3 text-center hover:bg-blue-50 transition-colors duration-200"
-            >
-              <div className="text-sm font-medium text-gray-700">{service.name}</div>
-            </div>
-          ))}
-        </div>
+      
       </div>
 
       {/* Template Download */}
@@ -281,21 +270,7 @@ export default function Sidebar() {
         </div>
       </div>
 
-      {/* Information */}
-      <div className="bg-white rounded-2xl shadow-lg p-6">
-        <h3 className="text-lg font-bold text-gray-900 mb-4">Information</h3>
-        <div className="space-y-2">
-          {resources.map((resource) => (
-            <Link
-              key={resource.href}
-              href={resource.href}
-              className="block text-sm text-gray-700 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors duration-200"
-            >
-              • {resource.label}
-            </Link>
-          ))}
-        </div>
-      </div>
+
     </aside>
   );
 }

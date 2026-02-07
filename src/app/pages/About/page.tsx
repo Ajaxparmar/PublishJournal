@@ -29,7 +29,7 @@ export default function AboutPage() {
     {
       icon: Award,
       title: 'Research Areas',
-      description: `The Journal publishes manuscripts in a wide variety of research areas in the field of engineering education. A description of current research areas in engineering education may be found in the special report, “The Research Agenda for the New Discipline of Engineering Education,” Journal of Engineering Education, vol. 95, no. 4 (October 2006), pp. 259–261. This report identifies five broad research areas: (1) engineering epistemologies (what constitutes engineering thinking and knowledge), (2) engineering learning mechanisms (how learners develop knowledge and competencies), (3) engineering learning systems (instructional cultures and institutional practices), (4) engineering diversity and inclusiveness (how human diversity contributes to engineering processes and products), and (5) engineering assessment (development and use of assessment methods, instruments, and metrics).`,
+      description: `The journal covers diverse engineering education research guided by five areas: engineering epistemologies, learning mechanisms, learning systems, diversity and inclusiveness, and assessment—examining engineering thinking, knowledge development, instructional practices, human diversity, and evaluation methods globally.`,
     },
   ];
 
@@ -42,10 +42,10 @@ export default function AboutPage() {
         <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12 mb-8">
           <div className="flex items-center mb-6">
             <BookOpen className="w-12 h-12 text-blue-600 mr-4" />
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900">About IJOS</h1>
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900">About JEE</h1>
           </div>
           <p className="text-xl text-gray-600 leading-relaxed">
-            International Journal of Interdisciplinary Organizational Studies
+            International Journal of Engineering Education 
           </p>
         </div>
 
@@ -102,7 +102,7 @@ export default function AboutPage() {
                   >
                     <value.icon className="w-10 h-10 text-blue-600 mb-4" />
                     <h3 className="text-xl font-bold text-gray-900 mb-3">{value.title}</h3>
-                    <p className="text-gray-700">{value.description}</p>
+                    <p className="text-gray-700 text-justify">{value.description}</p>
                   </div>
                 ))}
               </div>
@@ -139,11 +139,11 @@ export default function AboutPage() {
               <div className="space-y-4">
                 <div className="border-l-4 border-blue-600 pl-4">
                   <p className="text-sm text-gray-500">Founded</p>
-                  <p className="font-semibold text-gray-900">2006 (Collection)</p>
+                  <p className="font-semibold text-gray-900">2000 (Collection)</p>
                 </div>
                 <div className="border-l-4 border-blue-600 pl-4">
                   <p className="text-sm text-gray-500">Serial Start</p>
-                  <p className="font-semibold text-gray-900">2013 (Volume 8)</p>
+                  <p className="font-semibold text-gray-900">2000 (Volume 89)</p>
                 </div>
                 <div className="border-l-4 border-blue-600 pl-4">
                   <p className="text-sm text-gray-500">Frequency</p>
@@ -151,11 +151,11 @@ export default function AboutPage() {
                 </div>
                 <div className="border-l-4 border-blue-600 pl-4">
                   <p className="text-sm text-gray-500">ISSN Online</p>
-                  <p className="font-semibold text-gray-900 font-mono">2324-7657</p>
+                  <p className="font-semibold text-gray-900 font-mono">2168-9830</p>
                 </div>
                 <div className="border-l-4 border-blue-600 pl-4">
                   <p className="text-sm text-gray-500">Impact Factor</p>
-                  <p className="font-semibold text-gray-900">7.89</p>
+                  <p className="font-semibold text-gray-900">3.4</p>
                 </div>
                 <div className="border-l-4 border-blue-600 pl-4">
                   <p className="text-sm text-gray-500">Board Members</p>
@@ -168,10 +168,10 @@ export default function AboutPage() {
             <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl shadow-lg p-6 text-white">
               <h3 className="text-xl font-bold mb-4">Contact Us</h3>
               <div className="space-y-3 text-sm">
-                <p className="font-semibold">Prof. Tracey L. Brown</p>
-                <p className="text-blue-100">540 Upland Avenue</p>
-                <p className="text-blue-100">Reading, PA 19611</p>
-                <p className="text-blue-100">Phone: 610-796-8270</p>
+                <p className="font-semibold">David Knight</p>
+                <p className="text-blue-100">101 Station Landing Suite 300</p>
+                <p className="text-blue-100">Medford, MA 02155, USA</p>
+                <p className="text-blue-100">Phone: +1 781 388 8508</p>
                 <a
                   href="mailto:office@cg-scholar-organizationalstudies.org"
                   className="inline-block bg-white text-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-blue-50 transition-colors duration-200 mt-2"
@@ -185,16 +185,16 @@ export default function AboutPage() {
             <div className="bg-white rounded-2xl shadow-lg p-6">
               <h3 className="text-xl font-bold text-gray-900 mb-4">Related Links</h3>
               <div className="space-y-2">
-                <a href="/editorial-team" className="block text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors">
+                <a href="/pages/Editorial" className="block text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors">
                   → Editorial Team
                 </a>
-                <a href="/editorial-policies" className="block text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors">
+                <a href="/pages/Editorial" className="block text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors">
                   → Editorial Policies
                 </a>
-                <a href="/focus-and-scope" className="block text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors">
+                <a href="/pages/FocusAndScope" className="block text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors">
                   → Focus & Scope
                 </a>
-                <a href="/publication-ethics" className="block text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors">
+                <a href="/pages/Editorial" className="block text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors">
                   → Publication Ethics
                 </a>
               </div>

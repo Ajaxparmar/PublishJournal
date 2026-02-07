@@ -24,12 +24,12 @@ interface Paper {
 
 // Status configuration
 const statusConfig = {
-  SUBMITTED:    { percent: 0,    label: 'Submitted',    color: 'bg-gray-500',    textColor: 'text-gray-700' },
-  UNDER_REVIEW: { percent: 25,   label: 'Under Review', color: 'bg-blue-500',     textColor: 'text-blue-700' },
-  IN_PROCESS:   { percent: 50,   label: 'In Process',   color: 'bg-yellow-500',   textColor: 'text-yellow-700' },
-  ACCEPTED:     { percent: 75,   label: 'Accepted',     color: 'bg-green-500',    textColor: 'text-green-700' },
-  PUBLISHED:    { percent: 100,  label: 'Published',    color: 'bg-emerald-600',  textColor: 'text-emerald-700' },
-  REJECTED:     { percent: 0,    label: 'Rejected',     color: 'bg-red-600',      textColor: 'text-red-700' },
+  SUBMITTED: { percent: 0, label: 'Submitted', color: 'bg-gray-500', textColor: 'text-gray-700' },
+  UNDER_REVIEW: { percent: 25, label: 'Under Review', color: 'bg-blue-500', textColor: 'text-blue-700' },
+  IN_PROCESS: { percent: 50, label: 'In Process', color: 'bg-yellow-500', textColor: 'text-yellow-700' },
+  ACCEPTED: { percent: 75, label: 'Accepted', color: 'bg-green-500', textColor: 'text-green-700' },
+  PUBLISHED: { percent: 100, label: 'Published', color: 'bg-emerald-600', textColor: 'text-emerald-700' },
+  REJECTED: { percent: 0, label: 'Rejected', color: 'bg-red-600', textColor: 'text-red-700' },
 };
 
 const STATUS_STEPS = ['SUBMITTED', 'UNDER_REVIEW', 'IN_PROCESS', 'ACCEPTED', 'PUBLISHED'];
@@ -193,25 +193,32 @@ export default function MyPapersPage() {
                         </div>
 
                         {/* Action Buttons */}
-                        <div className="flex gap-3 pt-2">
-                          <a
-                            href={paper.pdfUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex-1 inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2.5 rounded-lg font-medium transition-colors"
-                          >
-                            <FileText className="w-4 h-4 mr-2" />
-                            View PDF
-                          </a>
-                          <a
-                            href={paper.pdfUrl}
-                            download
-                            className="flex-1 inline-flex items-center justify-center bg-green-600 hover:bg-green-700 text-white px-4 py-2.5 rounded-lg font-medium transition-colors"
-                          >
-                            <Download className="w-4 h-4 mr-2" />
-                            Download
-                          </a>
-                        </div>
+                        {/* Action Buttons – only visible when published */}
+                        {paper.status === 'PUBLISHED' ? (
+                          <div className="flex gap-3 pt-2">
+                            <a
+                              href={paper.pdfUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex-1 inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2.5 rounded-lg font-medium transition-colors"
+                            >
+                              <FileText className="w-4 h-4 mr-2" />
+                              View PDF
+                            </a>
+                            <a
+                              href={paper.pdfUrl}
+                              download
+                              className="flex-1 inline-flex items-center justify-center bg-green-600 hover:bg-green-700 text-white px-4 py-2.5 rounded-lg font-medium transition-colors"
+                            >
+                              <Download className="w-4 h-4 mr-2" />
+                              Download
+                            </a>
+                          </div>
+                        ) : (
+                          <div className="text-center text-sm text-gray-500 pt-2">
+                            PDF actions available after publication
+                          </div>
+                        )}
                       </>
                     )}
                   </div>

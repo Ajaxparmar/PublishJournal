@@ -322,37 +322,22 @@ export default function SupportPage() {
             <div className="bg-white rounded-2xl shadow-lg p-6">
               <h3 className="text-xl font-bold text-gray-900 mb-4">Quick Links</h3>
               <div className="space-y-2">
-                <a href="/author-guidelines" className="block text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors">
+                <a href="/pages/Scope/author-guidelines" className="block text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors">
                   → Author Guidelines
                 </a>
-                <a href="/submit" className="block text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors">
+                <a href="/pages/Submit" className="block text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors">
                   → Submit Paper
                 </a>
-                <a href="/editorial-policies" className="block text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors">
+                <a href="/pages/Editorial" className="block text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors">
                   → Editorial Policies
                 </a>
-                <a href="/publication-ethics" className="block text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors">
+                <a href="/pages/Editorial" className="block text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors">
                   → Publication Ethics
                 </a>
               </div>
             </div>
 
-            {/* Resources */}
-            <div className="bg-white rounded-2xl shadow-lg p-6">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Resources</h3>
-              <div className="space-y-2">
-                <a href="/for-authors" className="block text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors">
-                  → For Authors
-                </a>
-                <a href="/for-readers" className="block text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors">
-                  → For Readers
-                </a>
-                <a href="/for-librarians" className="block text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors">
-                  → For Librarians
-                </a>
-              </div>
-            </div>
-
+       
 
           </div>
         </div>

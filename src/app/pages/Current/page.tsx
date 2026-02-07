@@ -26,7 +26,7 @@ interface Volume {
 
 async function getCurrentVolume(): Promise<Volume | null> {
   try {
-    const res = await fetch('http://localhost:3000/api/latest-volume', {
+    const res = await fetch('http://localhost:3001/api/latest-volume', {
       cache: 'no-store',
     });
 
@@ -63,7 +63,7 @@ export default async function CurrentPage() {
             <h1 className="text-2xl md:text-2xl font-bold text-gray-900">Current Issue</h1>
           </div>
           <p className="text-xl text-gray-600 leading-relaxed">
-            Latest published volume of the International Journal of Interdisciplinary Organizational Studies
+            Latest published volume of the International Journal of Engineering Education. 
           </p>
         </div>
 
@@ -117,9 +117,9 @@ export default async function CurrentPage() {
                             Issue {issue.issueNumber}
                           </h4>
                           <p className="text-sm text-gray-600 mb-1">{issue.period}</p>
-                          <p className="text-xs text-gray-500 mb-3">
+                          {/* <p className="text-xs text-gray-500 mb-3">
                             {issue.description || 'No description available'}
-                          </p>
+                          </p> */}
                           <p className="text-sm text-gray-700 mb-4">
                             <strong>{issue._count?.papers ?? 0}</strong> articles
                           </p>

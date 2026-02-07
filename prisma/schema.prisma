@@ -28,12 +28,9 @@ model Volume {
   years       String
   issues Issue[] @relation("VolumeIssues")
   Archive     Boolean @default(false)
-
   createdById String? @db.ObjectId
   createdBy   User?   @relation("CreatedVolumes", fields: [createdById], references: [id])
-
   isVisible Boolean @default(true)
-
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   papers    Paper[]
@@ -98,7 +95,7 @@ model Issue {
   id       String @id @default(auto()) @map("_id") @db.ObjectId
   volumeId String @db.ObjectId
   volume   Volume @relation("VolumeIssues", fields: [volumeId], references: [id], onDelete: Cascade)
-
+  SpecialIssue Boolean @default(false)
   issueNumber String  // e.g. "1", "2", "Jan-Feb"
   year        Int? // e.g. 2026
   period      String? // e.g. "Jan-Jun", "Jul-Dec"

@@ -496,7 +496,7 @@ interface Volume {
 
 async function getVolumes(): Promise<Volume[]> {
   try {
-    const res = await fetch('http://localhost:3000/api/volumes', {
+    const res = await fetch('http://localhost:3001/api/volumes', {
       cache: 'no-store',
     });
 
@@ -543,7 +543,7 @@ export default async function ArchivesPage() {
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900">Archives</h1>
           </div>
           <p className="text-xl text-gray-600 leading-relaxed">
-            Browse all published issues of the International Journal of Interdisciplinary Organizational Studies
+            Browse all published issues of the International Journal of Engineering Education
           </p>
         </div>
 
@@ -554,7 +554,7 @@ export default async function ArchivesPage() {
 
             {/* Optional: show total count or something */}
             <section>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">All Volumes</h2>
+          
 
               {sortedVolumes.length === 0 ? (
                 <div className="bg-white rounded-2xl shadow-lg p-8 text-center text-gray-500">

@@ -170,6 +170,57 @@ export default function VolumesAdminPage() {
     }
   };
 
+  // add delete handler here
+  const handleDelete = async (id: string, volumeName?: string) => {
+    // Optional: Ask for confirmation here (or rely on AlertDialog already doing it)
+    // If you want extra safety: if (!confirm(`Delete volume ${volumeName || id}?`)) return;
+
+    const loadingToast = toast.loading("Deleting volume...");
+
+    try {
+      const res = await fetch(`/api/admin/volumes?id=${id}`, {
+        method: "DELETE",
+        // Optional: credentials: "include"   // ← add if using cookies/session auth
+        // headers: { "Content-Type": "application/json" }  // not needed for DELETE without body
+      });
+
+      // Optional but useful during development
+      // console.log("Delete response status:", res.status, res.statusText);
+
+      if (!res.ok) {
+        // Handle non-2xx responses early
+        const errorJson = await res.json().catch(() => ({}));
+        throw new Error(
+          errorJson.error || `Server responded with ${res.status} ${res.statusText}`
+        );
+      }
+
+      const json = await res.json();
+
+      if (json.success) {
+        toast.success("Volume deleted", {
+          description: volumeName
+            ? `${volumeName} has been removed`
+            : "The volume has been removed",
+          id: loadingToast,
+        });
+        fetchVolumes();
+      } else {
+        toast.error("Delete failed", {
+          description: json.error || "Unexpected response from server",
+          id: loadingToast,
+        });
+      }
+    } catch (err: any) {
+      console.error("[handleDelete]", err);
+
+      toast.error("Failed to delete volume", {
+        description: err.message || "Server or network error",
+        id: loadingToast,
+      });
+    }
+  };
+
   return (
     <>
       <div className="space-y-6 p-6">
@@ -271,7 +322,12 @@ export default function VolumesAdminPage() {
                         <Edit className="h-4 w-4 mr-1" />
                         Edit
                       </Button>
-                      <Button variant="ghost" size="sm" className="text-destructive">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="text-destructive"
+                        onClick={() => handleDelete(vol.id, vol.name)}
+                      >
                         <Trash2 className="h-4 w-4 mr-1" />
                         Delete
                       </Button>
@@ -358,6 +414,9 @@ export default function VolumesAdminPage() {
           )}
         </DialogContent>
       </Dialog>
-      </>
+      
+        
+
+    </>
   );
 }

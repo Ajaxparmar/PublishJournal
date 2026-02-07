@@ -61,19 +61,7 @@ export default function AboutSection() {
   </div>
 
   {/* Optional call-to-action block */}
-  <div className="mt-10 bg-blue-50 rounded-xl p-6 text-center">
-    <p className="text-gray-700 mb-4">
-      Visit the official journal site for submissions, archives, and more.
-    </p>
-    <a
-      href="https://onlinelibrarywileys.com"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="inline-block bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors"
-    >
-      Access Journal of Engineering Education on Wiley
-    </a>
-  </div>
+
 </section>
   );
 }

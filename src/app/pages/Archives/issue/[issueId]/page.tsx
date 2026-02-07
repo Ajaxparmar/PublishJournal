@@ -30,7 +30,7 @@ interface Paper {
 
 async function getPapersByIssueId(issueId: string): Promise<Paper[]> {
   try {
-    const url = `http://localhost:3000/api/papers?issueId=${encodeURIComponent(issueId)}`;
+    const url = `http://localhost:3001/api/papers?issueId=${encodeURIComponent(issueId)}`;
     console.log(`→ Fetching papers from: ${url}`);
 
     const res = await fetch(url, {
@@ -154,9 +154,9 @@ export default async function IssuePage({
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8 xl:gap-10">
+        <div className="grid lg:grid-cols-5 gap-8 xl:gap-10">
           {/* Main content */}
-          <div className="lg:col-span-2 space-y-10">
+          <div className="lg:col-span-4 space-y-10">
             {/* Issue Info Cards */}
             <section className="bg-white rounded-2xl shadow-lg p-6 md:p-10">
               <div className="flex items-center gap-4 mb-6">
@@ -170,7 +170,7 @@ export default async function IssuePage({
                 <div className="bg-blue-50 rounded-xl p-5">
                   <p className="text-sm text-gray-600 mb-1">Volume & Issue</p>
                   <p className="text-xl font-bold text-gray-900">
-                    Vol. {info.volume}, No. {info.issue}
+                    Volume {info.volume}, Issue-{info.issue}
                   </p>
                 </div>
                 <div className="bg-blue-50 rounded-xl p-5">
@@ -193,7 +193,7 @@ export default async function IssuePage({
             {/* Articles List */}
             <section>
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
-                Articles in This Issue ({papers.length})
+                Articles
               </h2>
 
               <div className="space-y-6 md:space-y-8">
@@ -223,7 +223,7 @@ export default async function IssuePage({
                     </div>
 
 
-          
+
 
                     {paper.Abstract && (
                       <div className="mb-6">
@@ -233,23 +233,25 @@ export default async function IssuePage({
                         </p>
                       </div>
                     )}
-
-                    {paper.keywords?.length > 0 && (
-                      <div className="mb-6">
-                        <h4 className="font-semibold text-gray-900 mb-2.5">Keywords</h4>
-                        <div className="flex flex-wrap gap-2">
-                          {paper.keywords.map((kw, i) => (
-                            <span
-                              key={i}
-                              className="text-gray-700 rounded-full text-sm"
-                            >
-                              {kw}
-                              {i === paper.keywords.length - 1 ? '.' : ','}
-                            </span>
-                          ))}
+                    <div className='hidden'>
+                      {paper.keywords?.length > 0 && (
+                        <div className="mb-6">
+                          <h4 className="font-semibold text-gray-900 mb-2.5">Keywords</h4>
+                          <div className="flex flex-wrap gap-2">
+                            {paper.keywords.map((kw, i) => (
+                              <span
+                                key={i}
+                                className="text-gray-700 rounded-full text-sm"
+                              >
+                                {kw}
+                                {i === paper.keywords.length - 1 ? '.' : ','}
+                              </span>
+                            ))}
+                          </div>
                         </div>
-                      </div>
-                    )}
+                      )}
+                    </div>
+
                     <div className="flex flex-wrap gap-4">
                       <a
                         href={paper.pdfUrl}
@@ -276,13 +278,16 @@ export default async function IssuePage({
           </div>
 
           {/* Sidebar */}
-          <aside className="lg:col-span-1 space-y-8">
+          <aside className="lg:col-span-1 space-y-6">
             <div className="bg-white rounded-2xl shadow-lg p-6 sticky top-6">
               <h3 className="text-xl font-bold text-gray-900 mb-5 text-center">
                 Issue Overview
               </h3>
+              <div className='w-[180px] text-center text-sm text-gray-600 italic mx-auto'>
 
-              <img src={info.imageUrl || '/default-issue-cover.jpg'} alt={`Cover for Volume ${info.volume}, Issue ${info.issue}`} className="w-full h-auto rounded-lg mb-5" />
+
+                <img src={info.imageUrl || '/default-issue-cover.jpg'} alt={`Cover for Volume ${info.volume}, Issue ${info.issue}`} className="w-full h-auto rounded-lg mb-5" />
+              </div>
             </div>
           </aside>
         </div>

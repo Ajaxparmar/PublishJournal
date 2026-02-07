@@ -14,28 +14,25 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'International Journal of Interdisciplinary Organizational Studies',
+    default: 'International Journal of Engineering Education',
     template: '%s | IJIOS', // child pages will have nice titles
   },
   description:
     'Exploring new possibilities in knowledge, culture and change management within the broader context of the nature and future of organizations and their impact on society.',
   keywords: [
-    'organizational studies',
+    'ENGINEERING EDUCATION',
     'interdisciplinary research',
     'academic journal',
     'peer-reviewed',
     'open access',
-    'management research',
-    'knowledge management',
-    'organizational change',
   ],
-  authors: [{ name: 'CG Scholar' }],
+  authors: [{ name: 'willy' }],
   openGraph: {
-    title: 'International Journal of Interdisciplinary Organizational Studies',
+    title: 'International Journal of Engineering Education',
     description:
-      'Exploring organizational dynamics through interdisciplinary research',
+      'Exploring engineering education through interdisciplinary research',
     type: 'website',
-    locale: 'en_US',
+    locale: 'in-en',
   },
 };
 

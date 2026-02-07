@@ -41,6 +41,8 @@ interface Volume {
 }
 
 interface Issue {
+  volume: any;
+  year: any;
   id: string;
   issueNumber: string;
   period?: string;
@@ -388,7 +390,7 @@ export default function PapersAdminPage() {
 
       {/* Add Dialog */}
       <Dialog open={addOpen} onOpenChange={setAddOpen}>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="max-w-2xl overflow-auto h-[90vh]">
           <DialogHeader>
             <DialogTitle>Create New Paper</DialogTitle>
           </DialogHeader>
@@ -418,7 +420,7 @@ export default function PapersAdminPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="grid gap-2">
+              <div className="grid gap-2 hidden">
                 <Label>Cover Image (optional)</Label>
                 <Input
                   type="file"
@@ -462,10 +464,11 @@ export default function PapersAdminPage() {
                 value={addForm.abstract}
                 onChange={(e) => setAddForm({ ...addForm, abstract: e.target.value })}
                 rows={3}
+                className="overflow-auto h-40"
               />
             </div>
 
-            <div className="grid gap-2">
+            <div className="grid gap-2 hidden">
               <Label>Keywords (comma separated)</Label>
               <Input
                 value={addForm.keywords}
@@ -495,7 +498,7 @@ export default function PapersAdminPage() {
                 <SelectContent>
                   {issues.map((iss) => (
                     <SelectItem key={iss.id} value={iss.id}>
-                      {iss.issueNumber} {iss.period ? `(${iss.period})` : ""}
+                      {iss.issueNumber} {iss.volume?.name || "Unknown Volume"} {iss.year ? `(${iss.year})` : ""} {iss.period ? `(${iss.period})` : ""}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -686,19 +689,21 @@ export default function PapersAdminPage() {
                     </p>
                   </div>
                 )}
-
-                {viewPaper.keywords?.length > 0 && (
-                  <div>
-                    <h4 className="text-sm font-medium mb-2">Keywords</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {viewPaper.keywords.map((kw, i) => (
-                        <Badge key={i} variant="secondary" className="text-xs">
-                          {kw}
-                        </Badge>
-                      ))}
+                <div className="hidden">
+                  {viewPaper.keywords?.length > 0 && (
+                    <div>
+                      <h4 className="text-sm font-medium mb-2">Keywords</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {viewPaper.keywords.map((kw, i) => (
+                          <Badge key={i} variant="secondary" className="text-xs">
+                            {kw}
+                          </Badge>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
+
+                </div>
 
                 {viewPaper.otherAuthors?.length > 0 && (
                   <div>
@@ -899,7 +904,7 @@ export default function PapersAdminPage() {
                   />
                 </div>
 
-                <div className="space-y-6">
+                <div className="space-y-6 hidden">
                   <div className="space-y-2">
                     <Label>Keywords (comma separated)</Label>
                     <Input
@@ -928,13 +933,13 @@ export default function PapersAdminPage() {
                   <SelectTrigger>
                     <SelectValue placeholder="Select issue" />
                   </SelectTrigger>
-                  <SelectContent>
-                    {issues.map((iss) => (
-                      <SelectItem key={iss.id} value={iss.id}>
-                        {iss.issueNumber} {iss.period ? `(${iss.period})` : ""}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
+                <SelectContent>
+                  {issues.map((iss) => (
+                    <SelectItem key={iss.id} value={iss.id}>
+                      {iss.issueNumber} {iss.volume?.name || "Unknown Volume"} {iss.year ? `(${iss.year})` : ""} {iss.period ? `(${iss.period})` : ""}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
                 </Select>
               </div>
 

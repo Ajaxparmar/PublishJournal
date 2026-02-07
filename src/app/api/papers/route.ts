@@ -49,25 +49,18 @@ export async function POST(req: NextRequest) {
 
     // Extract fields
     const title = formData.get("title")?.toString()?.trim();
-    const volumeId = "69807e932eefd3885915731e"
     const keywordsRaw = formData.get("keywords")?.toString()?.trim() || null;
     const authorsJson = formData.get("authors")?.toString()?.trim() || null;
     const pdfFile = formData.get("pdf") as File | null;
 
     // ── Required fields validation ──────────────────────────────────────
     if (!title) return badRequest("Title is required");
-    if (!volumeId) return badRequest("Volume ID is required");
     if (!pdfFile) return badRequest("PDF file is required");
     if (!authorsJson) return badRequest("Authors data is required");
 
     // ── Validate volumeId format (MongoDB ObjectId = 24 hex chars) ──────
     const objectIdRegex = /^[0-9a-fA-F]{24}$/;
-    if (!objectIdRegex.test(volumeId)) {
-      console.error(`Invalid volumeId format: "${volumeId}"`);
-      return badRequest(
-        "Invalid volume ID format — must be a valid 24-character hexadecimal ObjectId"
-      );
-    }
+
 
     // ── Validate PDF file ───────────────────────────────────────────────
     if (pdfFile.type !== "application/pdf") {
@@ -106,13 +99,19 @@ export async function POST(req: NextRequest) {
     }
 
     // ── Verify volume exists ────────────────────────────────────────────
-    const volume = await prisma.volume.findUnique({
-      where: { id: volumeId },
+    const volume = await prisma.volume.findFirst({
+      where: {
+        Archive: false,
+      },
     });
+    console.log(volume);
 
-    if (!volume) {
-      return notFound(`Volume with ID ${volumeId} not found`);
+
+    const validVolumeId = volume ? volume.id : null;
+    if (!validVolumeId) {
+      return notFound("Specified volume not found");
     }
+
 
     // ── Handle user (based on first author's email) ─────────────────────
     const mainAuthor = authorsData[0];
@@ -143,13 +142,14 @@ export async function POST(req: NextRequest) {
       uploadedById = user.id;
     }
 
+
     // ── Create the Paper record ─────────────────────────────────────────
     const newPaper = await prisma.paper.create({
       data: {
         title,
         keywords,
         pdfUrl,
-        volume: { connect: { id: volumeId } },
+        volume: { connect: { id: validVolumeId } },
         ...(uploadedById && { uploadedBy: { connect: { id: uploadedById } } }),
       },
       include: {
@@ -252,9 +252,9 @@ export async function GET(request: NextRequest) {
         },
       },
       orderBy: [{ createdAt: 'desc' }],
-    });    
+    });
     console.log("Fetched papers for issueId:", papers);
-    
+
     // Optional enrichment (improved typing & safety)
     const enrichedPapers = papers.map((paper) => {
       const volName = paper.volume?.name ?? '';

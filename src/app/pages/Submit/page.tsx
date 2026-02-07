@@ -192,11 +192,11 @@ export default function SubmitFormPage() {
                     General Information
                   </h2>
 
-                  <div className="bg-blue-50 rounded-lg p-4 mb-6">
+                  {/* <div className="bg-blue-50 rounded-lg p-4 mb-6">
                     <p className="text-gray-700 font-semibold">
                       Upcoming Volume: Volume 21, Issue 1, Jan-Jun, 2026
                     </p>
-                  </div>
+                  </div> */}
 
                   <div>
                     <label
@@ -386,7 +386,7 @@ export default function SubmitFormPage() {
                         onChange={(e) => setTelephone(e.target.value)}
                         required
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
-                        placeholder="+91 98765 43210"
+                        placeholder="+1 234 567 8900"
                       />
                     </div>
 
